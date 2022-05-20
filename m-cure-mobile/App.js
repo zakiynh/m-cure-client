@@ -10,9 +10,9 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* <GestureHandlerRootView> */}
-        {/* <NavigationContainer> */}
-          <MainStack />
-        {/* </NavigationContainer> */}
+      {/* <NavigationContainer> */}
+      <MainStack />
+      {/* </NavigationContainer> */}
       {/* </GestureHandlerRootView> */}
     </NavigationContainer>
   );
