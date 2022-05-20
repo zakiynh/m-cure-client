@@ -29,7 +29,7 @@ export default function LoginScreen() {
             // set access_token
             console.log(response.data)
             console.log("login pressed")
-            // navigation.navigate('Home Screen')
+            navigation.navigate('Home Screen')
         } catch (err) {
 
             navigation.navigate('Login Screen')

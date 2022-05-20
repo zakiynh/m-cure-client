@@ -33,7 +33,7 @@ export default function MainStack() {
                 {/* <Stack.Screen name="Consultan List" component={ConsultantList} /> */}
                 {/* <Stack.Screen name="Consultation History" component={ConsultationHistory} /> */}
                 {/* <Stack.Screen name="Edit Transaction" component={EditTransaction} /> */}
-                {/* <Stack.Screen name="Home Screen" component={HomeScreen} /> */}
+                <Stack.Screen name="Home Screen" component={HomeScreen} />
                 <Stack.Screen name="Login Screen" component={LoginScreen} />
                 {/* <Stack.Screen name="Payment" component={Payment} /> */}
                 {/* <Stack.Screen name="Profile" component={Profile} /> */}
