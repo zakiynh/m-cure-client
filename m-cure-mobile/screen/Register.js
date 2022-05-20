@@ -82,7 +82,7 @@ export default function Register() {
                         </View>
                     </View>
                     <View style={[tailwind("mx-auto"), styles.submitButtonG]} onPress={() => this.login(this.state.email, this.state.password)}>
-                    <AntDesign name="google" size={19} color="black" >Sign Up With Google</AntDesign>
+                    <AntDesign style={tailwind("mx-auto my-auto")} name="google" size={19} color="black" >Sign Up With Google</AntDesign>
                     </View>
                 </View>
             </ScrollView>
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         backgroundColor: COLORS.buttonGreen,
-        // padding: 10,
         margin: 15,
         height: 40,
         width: "50%",
@@ -116,7 +115,6 @@ const styles = StyleSheet.create({
     },
     submitButtonG: {
         backgroundColor: COLORS.buttonBlue,
-        padding: 10,
         margin: 15,
         height: 40,
         width: "50%",
