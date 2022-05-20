@@ -4,8 +4,10 @@ import { useTailwind } from "tailwind-rn";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import COLORS from "../src/colors";
+import axios from "axios";
 
 const logo = require("../assets/logo-wo-bg.png");
+const baseUrl = "https://m-cure-server.herokuapp.com/"
 
 export default function Register() {
     const tailwind = useTailwind();
@@ -15,9 +17,16 @@ export default function Register() {
     const [email, onChangeEmail] = useState("")
     const [password, onChangePassword] = useState("")
 
+    const data = {
+        name,
+        username,
+        email,
+        password
+    }
+
     async function doRegister() {
         try {
-            console.log("REGISTEREDDD")
+            const response = await axios.post(baseUrl + "users/register", data)
             navigation.navigate('Login Screen')
         } catch (err) {
             console.log(err)
@@ -26,14 +35,14 @@ export default function Register() {
     return (
         <>
             <ScrollView>
-                <View style={{ backgroundColor: COLORS.white, flex: 1 }}>
+                <View style={[tailwind("h-full"), { backgroundColor: COLORS.white, flex: 1 }]}>
                     <View style={tailwind("mx-auto")}>
                         <Image source={logo} style={{ width: 200, height: 200 }} />
                     </View>
 
                     <View style={{ flex: 1 }}>
                         <View>
-                            <View style={[tailwind("mx-auto"), styles.card]}>
+                            <View style={[tailwind("mx-auto items-center"), styles.card]}>
                                 <TextInput
                                     style={[tailwind("mx-auto"), styles.input]}
                                     underlineColorAndroid="transparent"
@@ -82,7 +91,7 @@ export default function Register() {
                         </View>
                     </View>
                     <View style={[tailwind("mx-auto"), styles.submitButtonG]} onPress={() => this.login(this.state.email, this.state.password)}>
-                    <AntDesign name="google" size={19} color="black" >Sign Up With Google</AntDesign>
+                    <AntDesign style={tailwind("mx-auto my-auto")} name="google" size={19} color="black" >Sign Up With Google</AntDesign>
                     </View>
                 </View>
             </ScrollView>
@@ -108,7 +117,6 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         backgroundColor: COLORS.buttonGreen,
-        // padding: 10,
         margin: 15,
         height: 40,
         width: "50%",
@@ -116,7 +124,6 @@ const styles = StyleSheet.create({
     },
     submitButtonG: {
         backgroundColor: COLORS.buttonBlue,
-        padding: 10,
         margin: 15,
         height: 40,
         width: "50%",
