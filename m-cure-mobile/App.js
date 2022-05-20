@@ -6,23 +6,20 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { GestureHandlerRootView, GestureDetector, Gesture } from 'react-native-gesture-handler';
 import MainStack from './navigation/MainStack';
 
+import { TailwindProvider } from 'tailwind-rn';
+import utilities from './tailwind.json';
+
 export default function App() {
   return (
-    <NavigationContainer>
-      {/* <GestureHandlerRootView> */}
-      {/* <NavigationContainer> */}
-      <MainStack />
-      {/* </NavigationContainer> */}
-      {/* </GestureHandlerRootView> */}
-    </NavigationContainer>
+    <TailwindProvider utilities={utilities}>
+      <NavigationContainer>
+        {/* <GestureHandlerRootView> */}
+        {/* <NavigationContainer> */}
+        <MainStack />
+        {/* </NavigationContainer> */}
+        {/* </GestureHandlerRootView> */}
+      </NavigationContainer>
+    </TailwindProvider>
+
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
