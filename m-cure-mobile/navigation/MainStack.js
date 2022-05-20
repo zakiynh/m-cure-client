@@ -27,8 +27,8 @@ export default function MainStack() {
             }}
         >
             <Stack.Navigator>
-                {/* <Stack.Screen name="Add Transaction" component={AddTransaction} />
-                <Stack.Screen name="Category" component={Category} />
+                <Stack.Screen name="Add Transaction" component={AddTransaction} />
+                {/* <Stack.Screen name="Category" component={Category} />
                 <Stack.Screen name="Chat" component={Chat} />
                 <Stack.Screen name="Consultan List" component={ConsultantList} />
                 <Stack.Screen name="Consultation History" component={ConsultationHistory} />

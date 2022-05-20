@@ -2,22 +2,37 @@ import { useState } from "react";
 import { View, StyleSheet, Dimensions, Image, Text, ScrollView, TextInput, Button, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn"
+import axios from 'axios'
 import COLORS from "../src/colors";
 
 const logo = require("../assets/logo-wo-bg.png")
 const windowWidth = Dimensions.get('window').width
 
 export default function LoginScreen() {
+    const baseUrl = "https://m-cure-server.herokuapp.com"
     const navigation = useNavigation()
     const tailwind = useTailwind()
     const [email, onChangeEmail] = useState("")
     const [password, onChangePassword] = useState("")
 
+    const data = {
+        email,
+        password
+    }
+
     async function loginHandler() {
+
         try {
+            console.log(data)
+            let response = await axios.post(`${baseUrl}/users/login`, data
+            )
+            // set access_token
+            console.log(response.data)
             console.log("login pressed")
-            navigation.navigate('Home Screen')
+            // navigation.navigate('Home Screen')
         } catch (err) {
+
+            navigation.navigate('Login Screen')
             console.log(err)
         }
     }
