@@ -74,6 +74,10 @@
   width: 75%
 }
 
+.items-center {
+  align-items: center
+}
+
 .rounded-3xl {
   border-radius: 1.5rem
 }

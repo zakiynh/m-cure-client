@@ -93,6 +93,11 @@
 			"width": "75%"
 		}
 	},
+	"items-center": {
+		"style": {
+			"alignItems": "center"
+		}
+	},
 	"rounded-3xl": {
 		"style": {
 			"borderTopLeftRadius": 24,

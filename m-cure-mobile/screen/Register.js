@@ -4,8 +4,10 @@ import { useTailwind } from "tailwind-rn";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import COLORS from "../src/colors";
+import axios from "axios";
 
 const logo = require("../assets/logo-wo-bg.png");
+const baseUrl = "https://m-cure-server.herokuapp.com/"
 
 export default function Register() {
     const tailwind = useTailwind();
@@ -15,9 +17,16 @@ export default function Register() {
     const [email, onChangeEmail] = useState("")
     const [password, onChangePassword] = useState("")
 
+    const data = {
+        name,
+        username,
+        email,
+        password
+    }
+
     async function doRegister() {
         try {
-            console.log("REGISTEREDDD")
+            const response = await axios.post(baseUrl + "users/register", data)
             navigation.navigate('Login Screen')
         } catch (err) {
             console.log(err)
@@ -26,14 +35,14 @@ export default function Register() {
     return (
         <>
             <ScrollView>
-                <View style={{ backgroundColor: COLORS.white, flex: 1 }}>
+                <View style={[tailwind("h-full"), { backgroundColor: COLORS.white, flex: 1 }]}>
                     <View style={tailwind("mx-auto")}>
                         <Image source={logo} style={{ width: 200, height: 200 }} />
                     </View>
 
                     <View style={{ flex: 1 }}>
                         <View>
-                            <View style={[tailwind("mx-auto"), styles.card]}>
+                            <View style={[tailwind("mx-auto items-center"), styles.card]}>
                                 <TextInput
                                     style={[tailwind("mx-auto"), styles.input]}
                                     underlineColorAndroid="transparent"
