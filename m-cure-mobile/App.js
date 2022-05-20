@@ -4,23 +4,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GestureHandlerRootView, GestureDetector, Gesture } from 'react-native-gesture-handler';
-import { TailwindProvider } from 'tailwind-rn';
-import utilities from './tailwind.json';
+import MainStack from './navigation/MainStack';
 
-import LoginPage from './screen/LoginPage';
-
-const Stack = createNativeStackNavigator()
 export default function App() {
   return (
-    <TailwindProvider utilities={utilities}>
-      <NavigationContainer>
-        <SafeAreaView style={{ flex: 1 }}>
-          <Stack.Navigator>
-            <Stack.Screen name='LoginPage' component={LoginPage} />
-          </Stack.Navigator>
-        </SafeAreaView>
-      </NavigationContainer>
-    </TailwindProvider>
+    <NavigationContainer>
+      {/* <GestureHandlerRootView> */}
+      {/* <NavigationContainer> */}
+      <MainStack />
+      {/* </NavigationContainer> */}
+      {/* </GestureHandlerRootView> */}
+    </NavigationContainer>
   );
 }
 
