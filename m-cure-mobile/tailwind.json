@@ -1,0 +1,24 @@
+{
+	"mx-auto": {
+		"style": {
+			"marginLeft": "auto",
+			"marginRight": "auto"
+		}
+	},
+	"h-full": {
+		"style": {
+			"height": "100%"
+		}
+	},
+	"w-full": {
+		"style": {
+			"width": "100%"
+		}
+	},
+	"bg-[#b4e197]": {
+		"style": {
+			"--tw-bg-opacity": 1,
+			"backgroundColor": "rgb(180 225 151 / var(--tw-bg-opacity))"
+		}
+	}
+}

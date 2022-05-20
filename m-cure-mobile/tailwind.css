@@ -1,0 +1,17 @@
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto
+}
+
+.h-full {
+  height: 100%
+}
+
+.w-full {
+  width: 100%
+}
+
+.bg-\[\#b4e197\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(180 225 151 / var(--tw-bg-opacity))
+}
