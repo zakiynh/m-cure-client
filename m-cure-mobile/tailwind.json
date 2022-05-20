@@ -93,6 +93,11 @@
 			"width": "75%"
 		}
 	},
+	"w-10/12": {
+		"style": {
+			"width": "83.333333%"
+		}
+	},
 	"items-center": {
 		"style": {
 			"alignItems": "center"
