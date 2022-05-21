@@ -5,12 +5,6 @@
 			"marginRight": "auto"
 		}
 	},
-	"my-auto": {
-		"style": {
-			"marginTop": "auto",
-			"marginBottom": "auto"
-		}
-	},
 	"my-5": {
 		"style": {
 			"marginTop": 20,
@@ -23,15 +17,10 @@
 			"marginBottom": 16
 		}
 	},
-	"my-2": {
+	"my-auto": {
 		"style": {
-			"marginTop": 8,
-			"marginBottom": 8
-		}
-	},
-	"mt-3": {
-		"style": {
-			"marginTop": 12
+			"marginTop": "auto",
+			"marginBottom": "auto"
 		}
 	},
 	"mt-7": {
@@ -39,19 +28,14 @@
 			"marginTop": 28
 		}
 	},
-	"mt-4": {
-		"style": {
-			"marginTop": 16
-		}
-	},
-	"mb-6": {
-		"style": {
-			"marginBottom": 24
-		}
-	},
 	"mt-2": {
 		"style": {
 			"marginTop": 8
+		}
+	},
+	"mt-3": {
+		"style": {
+			"marginTop": 12
 		}
 	},
 	"flex": {
@@ -59,9 +43,9 @@
 			"display": "flex"
 		}
 	},
-	"h-3/4": {
+	"h-2/5": {
 		"style": {
-			"height": "75%"
+			"height": "40%"
 		}
 	},
 	"h-12": {
@@ -69,29 +53,19 @@
 			"height": 48
 		}
 	},
-	"h-3/5": {
-		"style": {
-			"height": "60%"
-		}
-	},
 	"h-full": {
 		"style": {
 			"height": "100%"
 		}
 	},
-	"h-2/5": {
+	"h-3/4": {
 		"style": {
-			"height": "40%"
+			"height": "75%"
 		}
 	},
-	"w-full": {
+	"w-10/12": {
 		"style": {
-			"width": "100%"
-		}
-	},
-	"w-3/4": {
-		"style": {
-			"width": "75%"
+			"width": "83.333333%"
 		}
 	},
 	"w-80": {
@@ -99,9 +73,14 @@
 			"width": 320
 		}
 	},
-	"w-10/12": {
+	"w-3/4": {
 		"style": {
-			"width": "83.333333%"
+			"width": "75%"
+		}
+	},
+	"w-full": {
+		"style": {
+			"width": "100%"
 		}
 	},
 	"flex-row": {
@@ -114,20 +93,20 @@
 			"alignItems": "center"
 		}
 	},
-	"rounded-2xl": {
-		"style": {
-			"borderTopLeftRadius": 16,
-			"borderTopRightRadius": 16,
-			"borderBottomRightRadius": 16,
-			"borderBottomLeftRadius": 16
-		}
-	},
 	"rounded-3xl": {
 		"style": {
 			"borderTopLeftRadius": 24,
 			"borderTopRightRadius": 24,
 			"borderBottomRightRadius": 24,
 			"borderBottomLeftRadius": 24
+		}
+	},
+	"rounded-2xl": {
+		"style": {
+			"borderTopLeftRadius": 16,
+			"borderTopRightRadius": 16,
+			"borderBottomRightRadius": 16,
+			"borderBottomLeftRadius": 16
 		}
 	},
 	"border-b-2": {
@@ -178,11 +157,6 @@
 		"style": {
 			"paddingLeft": 8,
 			"paddingRight": 8
-		}
-	},
-	"pb-4": {
-		"style": {
-			"paddingBottom": 16
 		}
 	},
 	"pb-8": {
