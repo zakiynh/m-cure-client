@@ -26,6 +26,10 @@
   margin-top: 0.5rem
 }
 
+.mt-3 {
+  margin-top: 0.75rem
+}
+
 .flex {
   display: flex
 }
@@ -42,6 +46,10 @@
   height: 100%
 }
 
+.h-3\/4 {
+  height: 75%
+}
+
 .w-10\/12 {
   width: 83.333333%
 }
@@ -52,6 +60,14 @@
 
 .w-3\/4 {
   width: 75%
+}
+
+.w-full {
+  width: 100%
+}
+
+.flex-row {
+  flex-direction: row
 }
 
 .items-center {
@@ -66,9 +82,47 @@
   border-radius: 1rem
 }
 
+.border-b-2 {
+  border-bottom-width: 2px
+}
+
+.border-gray-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity))
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.bg-\[\#e9efc0\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(233 239 192 / var(--tw-bg-opacity))
+}
+
+.bg-\[\#b4e197\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(180 225 151 / var(--tw-bg-opacity))
+}
+
+.bg-\[\#f3f3f3\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 243 243 / var(--tw-bg-opacity))
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem
+}
+
+.pb-8 {
+  padding-bottom: 2rem
 }
 
 .text-center {
@@ -82,6 +136,16 @@
 
 .font-bold {
   font-weight: 700
+}
+
+.text-neutral-400 {
+  --tw-text-opacity: 1;
+  color: rgb(163 163 163 / var(--tw-text-opacity))
+}
+
+.text-\[\#4e944f\] {
+  --tw-text-opacity: 1;
+  color: rgb(78 148 79 / var(--tw-text-opacity))
 }
 
 .underline {
