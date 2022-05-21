@@ -1,14 +1,4 @@
 {
-	"absolute": {
-		"style": {
-			"position": "absolute"
-		}
-	},
-	"relative": {
-		"style": {
-			"position": "relative"
-		}
-	},
 	"mx-auto": {
 		"style": {
 			"marginLeft": "auto",
@@ -33,34 +23,9 @@
 			"marginBottom": "auto"
 		}
 	},
-	"ml-4": {
-		"style": {
-			"marginLeft": 16
-		}
-	},
-	"ml-6": {
-		"style": {
-			"marginLeft": 24
-		}
-	},
 	"mt-7": {
 		"style": {
 			"marginTop": 28
-		}
-	},
-	"mt-14": {
-		"style": {
-			"marginTop": 56
-		}
-	},
-	"mt-6": {
-		"style": {
-			"marginTop": 24
-		}
-	},
-	"mt-4": {
-		"style": {
-			"marginTop": 16
 		}
 	},
 	"mt-2": {
@@ -73,16 +38,6 @@
 			"display": "flex"
 		}
 	},
-	"h-full": {
-		"style": {
-			"height": "100%"
-		}
-	},
-	"h-screen": {
-		"style": {
-			"height": "100vh"
-		}
-	},
 	"h-2/5": {
 		"style": {
 			"height": "40%"
@@ -93,14 +48,14 @@
 			"height": 48
 		}
 	},
-	"w-full": {
+	"h-full": {
 		"style": {
-			"width": "100%"
+			"height": "100%"
 		}
 	},
-	"w-1/2": {
+	"w-10/12": {
 		"style": {
-			"width": "50%"
+			"width": "83.333333%"
 		}
 	},
 	"w-80": {
@@ -111,11 +66,6 @@
 	"w-3/4": {
 		"style": {
 			"width": "75%"
-		}
-	},
-	"w-10/12": {
-		"style": {
-			"width": "83.333333%"
 		}
 	},
 	"items-center": {
@@ -139,36 +89,6 @@
 			"borderBottomLeftRadius": 16
 		}
 	},
-	"border": {
-		"style": {
-			"borderTopWidth": 1,
-			"borderRightWidth": 1,
-			"borderBottomWidth": 1,
-			"borderLeftWidth": 1
-		}
-	},
-	"bg-[#b4e197]": {
-		"style": {
-			"--tw-bg-opacity": 1,
-			"backgroundColor": "rgb(180 225 151 / var(--tw-bg-opacity))"
-		}
-	},
-	"p-0.5": {
-		"style": {
-			"paddingTop": 2,
-			"paddingRight": 2,
-			"paddingBottom": 2,
-			"paddingLeft": 2
-		}
-	},
-	"p-0": {
-		"style": {
-			"paddingTop": 0,
-			"paddingRight": 0,
-			"paddingBottom": 0,
-			"paddingLeft": 0
-		}
-	},
 	"px-4": {
 		"style": {
 			"paddingLeft": 16,
@@ -189,12 +109,6 @@
 	"font-bold": {
 		"style": {
 			"fontWeight": "700"
-		}
-	},
-	"text-gray-600": {
-		"style": {
-			"--tw-text-opacity": 1,
-			"color": "rgb(75 85 99 / var(--tw-text-opacity))"
 		}
 	},
 	"underline": {
