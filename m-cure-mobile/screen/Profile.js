@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput, ImageBackground } from "react-native";
 import COLORS from "../src/colors";
 import { Avatar } from "react-native-paper";
@@ -6,10 +6,32 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { AntDesign } from "@expo/vector-icons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useTailwind } from "tailwind-rn";
+import axios from "axios";
 
-const image = { uri: "https://www.awrestaurants.co.id/images/anwbearanimation-1.gif" };
+// const image = { uri: "https://www.awrestaurants.co.id/images/anwbearanimation-1.gif" };
+const image = { uri: "https://i.pinimg.com/originals/1a/c7/6c/1ac76c2bd77d97f913dd44c150f28f0e.png" };
+
+const baseUrl = "https://m-cure-origin.herokuapp.com/"
 
 export default function Profile() {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        axios( baseUrl + "users/detail", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTU3NDEsImV4cCI6MTY1MzEyMjk0MX0.KZnmqQkJm1BZA6kEv0cb1be7XzEejlMEKHgnh3O_PDI"
+            }
+        })
+        .then(res => {
+            const data = res.data
+            // console.log("data: ", data);
+            setData(data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    })
     const tailwind = useTailwind();
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -33,7 +55,7 @@ export default function Profile() {
                         ></View>
                     </ImageBackground>
                 </View>
-                <Text style={{ marginTop: 10, fontSize: 18, fontWeight: "bold" }}>Username Disini</Text>
+                <Text style={{ marginTop: 10, fontSize: 18, fontWeight: "bold" }}>{data.username}</Text>
             </View>
 
             <View style={styles.action}>
@@ -41,28 +63,28 @@ export default function Profile() {
                     {" "}
                     Name
                 </FontAwesome>
-                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> Name disini </Text>
+                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {data.name} </Text>
             </View>
             <View style={styles.action}>
                 <FontAwesome name="envelope-o" color={COLORS.mainGreen} size={22}>
                     {" "}
                     Email
                 </FontAwesome>
-                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> Email disini </Text>
+                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {data.email} </Text>
             </View>
             <View style={styles.action}>
                 <FontAwesome name="lock" color={COLORS.mainGreen} size={22}>
                     {" "}
                     Password
                 </FontAwesome>
-                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> Password disini </Text>
+                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> ***** </Text>
             </View>
             <View style={styles.action}>
                 <FontAwesome name="user-o" color={COLORS.mainGreen} size={22}>
                     {" "}
                     User ID
                 </FontAwesome>
-                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> User ID disini </Text>
+                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {data.id} </Text>
             </View>
         </View>
     );
