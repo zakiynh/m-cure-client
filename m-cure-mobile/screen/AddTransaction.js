@@ -8,14 +8,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import axios from 'axios'
-import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { postTransaction } from '../src/store/actions/transactionActions';
 
-export default function AddTransaction() {
+export default function AddTransaction({ navigation }) {
     const tailwind = useTailwind()
     const baseUrl = "https://m-cure-origin.herokuapp.com"
-    const navigation = useNavigation()
     const dispatch = useDispatch()
     const { access_token } = useSelector((state) => {
         return state.user
@@ -69,7 +67,7 @@ export default function AddTransaction() {
             if (response === "success") {
                 console.log("berhasil add transaction")
                 // swal berhasil add transaction
-                // navigation.navigate('Home Screen')
+                navigation.navigate('Home Screen')
             } else {
                 throw response
             }

@@ -6,15 +6,23 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useTailwind } from "tailwind-rn"
 import { Picker } from '@react-native-picker/picker'
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import axios from 'axios'
+import { getDetailTransactions } from '../src/store/actions/transactionActions';
 
-
-export default function EditTransaction() {
+export default function EditTransaction({ navigation, route }) {
+    const dispatch = useDispatch()
     const tailwind = useTailwind()
     const baseUrl = "https://m-cure-origin.herokuapp.com"
+    // const idTransaction = route.params.id
+    const { access_token } = useSelector((state) => {
+        return state.user
+    })
+    const { detailTransactions } = useSelector((state) => {
+        return state.transaction
+    })
 
-    const [amount, onChangeAmount] = useState("")
+    const [amount, onChangeAmount] = useState(detailTransactions.amount)
     const [categoryName, onChangeCategory] = useState("")
     const [CategoryId, onChangeCategoryId] = useState("")
     const [transactionDate, onChangeDate] = useState(new Date())
@@ -45,26 +53,10 @@ export default function EditTransaction() {
         CategoryId
     }
 
-    // const access_token = useContext(access_token)
-
-    // Get detail transaction
-    async function getDetailTransaction() {
-        try {
-            let response = await axios.get(`${baseUrl}/users/transactions/4`, {
-                headers: {
-                    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhbmRyZXdqYW5lYW5hbnRvQG1haWwuY29tIiwiaWF0IjoxNjUzMTE1NjU1LCJleHAiOjE2NTMxMjI4NTV9.wM9WzRzMEFGWLx2db5wsMqfjIVw5-RYsSCEPtgjLXVg"
-                }
-            })
-            console.log(response.data.data)
-            // setAllCategories(response.data.data)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    // useEffect(() => {
-    //     getDetailTransaction()
-    // }, [])
+    useEffect(() => {
+        dispatch(getDetailTransactions(6, access_token))
+        console.log(detailTransactions)
+    }, [])
 
     // useEffect(() => {
     //     if (categoryName === 'income') {

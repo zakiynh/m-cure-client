@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import { View, StyleSheet, Dimensions, Image, Text, ScrollView, TextInput, Button, Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn"
 import { useDispatch } from "react-redux";
 import axios from 'axios'
@@ -10,9 +9,8 @@ import { postLoginUser } from "../src/store/actions/userActions";
 const logo = require("../assets/logo-wo-bg.png")
 const windowWidth = Dimensions.get('window').width
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
     const baseUrl = "https://m-cure-origin.herokuapp.com"
-    const navigation = useNavigation()
     const tailwind = useTailwind()
     const dispatch = useDispatch()
 
@@ -32,7 +30,7 @@ export default function LoginScreen() {
                 console.log("berhasil login")
                 // swal berhasil login
                 // navigation.navigate('Home Screen')
-                navigation.navigate('Add Transaction')
+                navigation.navigate('Edit Transaction')
             } else {
                 throw response
             }
