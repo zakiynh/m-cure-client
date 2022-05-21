@@ -31,18 +31,17 @@ export default function ConsultationHistory() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTIwMjUsImV4cCI6MTY1MzExOTIyNX0.gRJaVk5Noytfc4aHKVqrmM4cRbixHhXwt2lhD55Gux0",
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTU3NDEsImV4cCI6MTY1MzEyMjk0MX0.KZnmqQkJm1BZA6kEv0cb1be7XzEejlMEKHgnh3O_PDI",
             }
         })
         .then(res => {
-            const data = res.data
-            // console.log("data: ", data)
+            const data = res.data.data
             setData(data)
         })
         .catch(err => {
             console.log(err)
         })
-    })
+    }, [])
     return (
         <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
@@ -57,7 +56,7 @@ export default function ConsultationHistory() {
                         return (
                             <View style={styles.consultant}>
                                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
-                                    <Avatar.Image source={item.image} size={80} />
+                                    <Avatar.Image source={image} size={80} />
                                     <View style={{ flexDirection: "row", justifyContent:"space-between", marginLeft: 20 }}>
                                         <View style={{ marginLeft: 10, marginRight: 10 }}>
                                         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
