@@ -82,16 +82,21 @@ export default function Register() {
                                 />
 
                                 <View style={[tailwind("mx-auto"), styles.submitButton]} >
-                                    <Text 
-                                    style={tailwind("mx-auto my-auto")}
-                                    onPress={doRegister}
+                                    <Text
+                                        style={tailwind("mx-auto my-auto")}
+                                        onPress={doRegister}
                                     > Submit </Text>
                                 </View>
                             </View>
                         </View>
                     </View>
+<<<<<<< HEAD
+                    <View style={[tailwind("mx-auto"), styles.submitButtonG]} onPress={() => this.login(this.state.email, this.state.password)}>
+                        <AntDesign style={tailwind("mx-auto my-auto")} name="google" size={19} color="black" >Sign Up With Google</AntDesign>
+=======
                     <View style={[tailwind("mx-auto"), styles.submitButtonG]} >
                     <AntDesign style={tailwind("mx-auto my-auto")} name="google" size={19} color="black" >Sign Up With Google</AntDesign>
+>>>>>>> 054b6aff9ff6675ae5f450e9d6d7d3bfeeca79a8
                     </View>
                     <View style={[tailwind("mx-auto"), styles.cancel]} >
                     <Text style={[tailwind("mx-auto my-auto text-bold"), {fontWeight:"bold", fontSize:22}]} color="black" 
