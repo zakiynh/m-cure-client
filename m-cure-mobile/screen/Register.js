@@ -7,7 +7,7 @@ import COLORS from "../src/colors";
 import axios from "axios";
 
 const logo = require("../assets/logo-wo-bg.png");
-const baseUrl = "https://m-cure-server.herokuapp.com/"
+const baseUrl = "https://m-cure-origin.herokuapp.com/"
 
 export default function Register() {
     const tailwind = useTailwind();
@@ -90,8 +90,21 @@ export default function Register() {
                             </View>
                         </View>
                     </View>
+<<<<<<< HEAD
                     <View style={[tailwind("mx-auto"), styles.submitButtonG]} onPress={() => this.login(this.state.email, this.state.password)}>
                         <AntDesign style={tailwind("mx-auto my-auto")} name="google" size={19} color="black" >Sign Up With Google</AntDesign>
+=======
+                    <View style={[tailwind("mx-auto"), styles.submitButtonG]} >
+                    <AntDesign style={tailwind("mx-auto my-auto")} name="google" size={19} color="black" >Sign Up With Google</AntDesign>
+>>>>>>> 054b6aff9ff6675ae5f450e9d6d7d3bfeeca79a8
+                    </View>
+                    <View style={[tailwind("mx-auto"), styles.cancel]} >
+                    <Text style={[tailwind("mx-auto my-auto text-bold"), {fontWeight:"bold", fontSize:22}]} color="black" 
+                        onPress={() => {
+                            navigation.navigate('Login Screen')
+                        }}>
+                        Cancel
+                        </Text>
                     </View>
                 </View>
             </ScrollView>
@@ -128,5 +141,13 @@ const styles = StyleSheet.create({
         height: 40,
         width: "50%",
         borderRadius: 40,
+    },
+    cancel: {
+        backgroundColor: COLORS.buttonRed,
+        margin: 15,
+        height: 40,
+        width: "50%",
+        borderRadius: 40,
+        fontWeight: "bold",
     },
 });
