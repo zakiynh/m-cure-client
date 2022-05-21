@@ -9,12 +9,18 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import axios from 'axios'
 import { useNavigation } from '@react-navigation/native';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { postTransaction } from '../src/store/actions/transactionActions';
 
 export default function AddTransaction() {
     const tailwind = useTailwind()
     const baseUrl = "https://m-cure-origin.herokuapp.com"
     const navigation = useNavigation()
+    const dispatch = useDispatch()
+    const { access_token } = useSelector((state) => {
+        return state.user
+    })
+
     const [amount, onChangeAmount] = useState("")
     const [categoryName, onChangeCategory] = useState("")
     const [CategoryId, onChangeCategoryId] = useState("")
@@ -45,8 +51,6 @@ export default function AddTransaction() {
         CategoryId
     }
 
-    // const access_token = useContext(access_token)
-
     // Get All Type Transaction
     async function getCategories() {
         try {
@@ -60,19 +64,20 @@ export default function AddTransaction() {
     // Hit to Server Post Transaction
     async function addTransactionHandler() {
         try {
-            console.log(dataToSend)
-            let response = await axios.post(`${baseUrl}/users/transactions`, dataToSend, {
-                headers: {
-                    access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTI2OTIsImV4cCI6MTY1MzExOTg5Mn0.M7m_InaGfMaBdcELzFI7kAojFONBgYe5C61yHcnSgJc'
-                }
-            })
-            // navigation.navigate('Home Screen')
-            console.log(response.data, "succeed add transaction")
+            let response = await dispatch(postTransaction(dataToSend, access_token))
+
+            if (response === "success") {
+                console.log("berhasil add transaction")
+                // swal berhasil add transaction
+                // navigation.navigate('Home Screen')
+            } else {
+                throw response
+            }
         } catch (err) {
-            console.log(err, "line 69")
+            // swal error add transaction
+            console.log(err)
         }
     }
-
     useEffect(() => {
         getCategories()
     }, [])
@@ -138,7 +143,3 @@ export default function AddTransaction() {
         </View >
     )
 }
-
-// const styles = StyleSheet.create({
-
-// })

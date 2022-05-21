@@ -5,21 +5,25 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GestureHandlerRootView, GestureDetector, Gesture } from 'react-native-gesture-handler';
 import MainStack from './navigation/MainStack';
-
 import { TailwindProvider } from 'tailwind-rn';
 import utilities from './tailwind.json';
+import 'react-native-gesture-handler';
+// import AppStack from './navigation/AppStack';
+import { Provider } from 'react-redux';
+import store from './src/store/index'
 
 export default function App() {
   return (
-    <TailwindProvider utilities={utilities}>
-      <NavigationContainer>
-        {/* <GestureHandlerRootView> */}
-        {/* <NavigationContainer> */}
-        <MainStack />
-        {/* </NavigationContainer> */}
-        {/* </GestureHandlerRootView> */}
-      </NavigationContainer>
-    </TailwindProvider>
+    <Provider store={store}>
+      <TailwindProvider utilities={utilities}>
+        <NavigationContainer>
+          {/* <GestureHandlerRootView> */}
+          <MainStack />
+          {/* <AppStack /> */}
+          {/* </GestureHandlerRootView> */}
+        </NavigationContainer>
+      </TailwindProvider>
+    </Provider>
 
   );
 }
