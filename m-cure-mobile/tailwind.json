@@ -1,4 +1,9 @@
 {
+	"absolute": {
+		"style": {
+			"position": "absolute"
+		}
+	},
 	"mx-auto": {
 		"style": {
 			"marginLeft": "auto",
