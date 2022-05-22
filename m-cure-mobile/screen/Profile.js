@@ -16,26 +16,26 @@ const baseUrl = "https://m-cure-origin.herokuapp.com/"
 export default function Profile() {
     const [data, setData] = useState([])
     useEffect(() => {
-        axios( baseUrl + "users/detail", {
+        axios(baseUrl + "users/detail", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTU3NDEsImV4cCI6MTY1MzEyMjk0MX0.KZnmqQkJm1BZA6kEv0cb1be7XzEejlMEKHgnh3O_PDI"
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0"
             }
         })
-        .then(res => {
-            const data = res.data
-            // console.log("data: ", data);
-            setData(data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                const data = res.data
+                // console.log("data: ", data);
+                setData(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     })
     const tailwind = useTailwind();
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.white }}>
-            <View style={[ { alignItems: "center" }]}>
+            <View style={[{ alignItems: "center" }]}>
                 <View
                     style={{
                         height: 100,

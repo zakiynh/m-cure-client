@@ -1,17 +1,19 @@
 import { React, useState } from "react";
 import { View, StyleSheet, Dimensions, Image, Text, ScrollView, TextInput, Button, Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn"
+import { useDispatch } from "react-redux";
 import axios from 'axios'
 import COLORS from "../src/colors";
+import { postLoginUser } from "../src/store/actions/userActions";
 
 const logo = require("../assets/logo-wo-bg.png")
 const windowWidth = Dimensions.get('window').width
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
     const baseUrl = "https://m-cure-origin.herokuapp.com"
-    const navigation = useNavigation()
     const tailwind = useTailwind()
+    const dispatch = useDispatch()
+
     const [email, onChangeEmail] = useState("")
     const [password, onChangePassword] = useState("")
 
@@ -21,28 +23,21 @@ export default function LoginScreen() {
     }
 
     async function loginHandler() {
-
         try {
-            // console.log(data)
-            let response = await axios.post(`${baseUrl}/users/login`, data
-            )
+            let response = await dispatch(postLoginUser(data))
 
-            console.log(response.data.access_token)
-            // let test = {
-            //     access_token: response.data.access_token
-            // }
-
-            // access_token = React.createContext(test)
-            // console.log(access_token)
-            // console.log("login pressed")
-            navigation.navigate('Add Transaction')
-
-            // navigation.navigate('Home Screen')
-
+            if (response === 'success') {
+                console.log("berhasil login")
+                // swal berhasil login
+                navigation.navigate('Home Screen')
+                // navigation.navigate('Edit Transaction')
+            } else {
+                throw response
+            }
         } catch (err) {
-
+            // swal Invalid email or password
+            console.log("Invalid email and password")
             navigation.navigate('Login Screen')
-            console.log(err)
         }
     }
     return (

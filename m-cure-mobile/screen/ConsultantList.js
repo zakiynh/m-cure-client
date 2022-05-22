@@ -26,21 +26,21 @@ const baseUrl = "https://m-cure-origin.herokuapp.com/"
 export default function ConsultantList() {
     const [data, setData] = useState([])
     useEffect(() => {
-        axios( baseUrl + "users/consultants", {
+        axios(baseUrl + "users/consultants", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTU3NDEsImV4cCI6MTY1MzEyMjk0MX0.KZnmqQkJm1BZA6kEv0cb1be7XzEejlMEKHgnh3O_PDI"
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0"
             }
         })
-        .then(res => {
-            const data = res.data
-            console.log("data: ", data);
-            setData(data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                const data = res.data
+                console.log("data: ", data);
+                setData(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
     return (
         <View style={{ flex: 1 }}>
@@ -70,7 +70,7 @@ export default function ConsultantList() {
                                         </Title>
                                         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                                             <Entypo style={styles.logo} name="chat" size={30} color={COLORS.mainGreen} />
-                                            <FontAwesome style={[styles.logo, {marginLeft: 40}]} name="video-camera" size={30} color={COLORS.mainGreen} />
+                                            <FontAwesome style={[styles.logo, { marginLeft: 40 }]} name="video-camera" size={30} color={COLORS.mainGreen} />
                                         </View>
                                     </View>
                                 </View>
