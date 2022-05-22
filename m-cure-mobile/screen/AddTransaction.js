@@ -109,9 +109,11 @@ export default function AddTransaction({ navigation }) {
                         selectedValue={CategoryId}
                         onValueChange={(itemValue, itemIndex) => onChangeCategoryId(itemValue)}>
                         <Picker.Item enabled={false} label='Select Transaction Type' style={tailwind(`text-xl text-xl text-neutral-400`)} />
+
                         {categoryData.map((el, index) => {
                             return (
                                 <Picker.Item key={index} style={tailwind("text-xl")} value={el.id} label={el.type} />
+
                             )
                         })}
                     </Picker>
