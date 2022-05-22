@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { DETAIL_TRANSACTION_SUCCESS } from "./actionTypes"
+import { DETAIL_TRANSACTION_SUCCESS, GET_CATEGORIES_SUCCESS } from "./actionTypes"
 
 const baseUrl = "https://m-cure-origin.herokuapp.com"
 
@@ -10,7 +10,14 @@ export const getDetailSuccess = (payload) => {
     payload
   }
 }
+export const getCategoriesSuccess = (payload) => {
+  return {
+    type: GET_CATEGORIES_SUCCESS,
+    payload
+  }
+}
 
+// POST Add Transaction
 export const postTransaction = (data, access_token) => {
   return async (dispatch) => {
     try {
@@ -34,6 +41,7 @@ export const postTransaction = (data, access_token) => {
   }
 }
 
+// Get Detail Transactions by Id
 export const getDetailTransactions = (id, access_token) => {
   return async (dispatch) => {
     try {
@@ -42,11 +50,23 @@ export const getDetailTransactions = (id, access_token) => {
           "access_token": access_token
         }
       })
-      console.log(response.data.data)
       dispatch(getDetailSuccess(response.data.data))
       return "success"
     } catch (error) {
       return error
+    }
+  }
+}
+
+// Get All Categories Transactions
+export const getCategories = () => {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(`https://m-cure-origin.herokuapp.com/categories`)
+      dispatch(getCategoriesSuccess(response.data.data))
+      return "success"
+    } catch (error) {
+      console.log(error)
     }
   }
 }

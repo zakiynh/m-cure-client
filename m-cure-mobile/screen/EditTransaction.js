@@ -22,13 +22,12 @@ export default function EditTransaction({ navigation, route }) {
         return state.transaction
     })
 
-    const [amount, onChangeAmount] = useState(detailTransactions.amount)
+    const [amount, onChangeAmount] = useState(0)
     const [categoryName, onChangeCategory] = useState("")
     const [CategoryId, onChangeCategoryId] = useState("")
     const [transactionDate, onChangeDate] = useState(new Date())
     const [categoryData, setData] = useState([])
     const [allCategories, setAllCategories] = useState([])
-
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate;
@@ -55,26 +54,39 @@ export default function EditTransaction({ navigation, route }) {
 
     useEffect(() => {
         dispatch(getDetailTransactions(6, access_token))
-        console.log(detailTransactions)
-    }, [])
+        if (detailTransactions) {
+            console.log(detailTransactions.CategoryId)
+            onChangeAmount(detailTransactions.amount)
+            onChangeCategory(detailTransactions.Category.name)
+            onChangeCategoryId(detailTransactions.CategoryId)
+            onChangeDate(detailTransactions.transactionDate)
+        }
 
-    // useEffect(() => {
-    //     if (categoryName === 'income') {
-    //         setData(allCategories.incomeCategories)
-    //     } else if (categoryName === "expense") {
-    //         setData(allCategories.expenseCategories)
-    //     } else {
-    //         setData(allCategories)
-    //     }
-    // }, [categoryName])
+    }, [detailTransactions.amount])
 
+    useEffect(() => {
+        if (categoryName === 'Income') {
+            setData(allCategories.incomeCategories)
+        } else if (categoryName === "Expense") {
+            setData(allCategories.expenseCategories)
+        } else {
+            setData(allCategories)
+        }
+        console.log(categoryData)
+    }, [categoryName])
+
+    if (!detailTransactions) {
+        <View>
+            <Text>Loading</Text>
+        </View>
+    }
     return (
         <View style={{ flex: 1 }}>
             <View style={tailwind(`bg-white w-full h-3/4 mx-auto mt-3`)}>
                 <TextInput
                     style={tailwind(`w-3/4 h-12 mx-auto mt-7 px-4 border-b-2 border-gray-500 bg-white text-xl text-[${COLORS.textGreen}]`)}
                     onChangeText={onChangeAmount}
-                    value={amount}
+                    value={amount.toString()}
                     placeholder="Amount"
                     keyboardType="numeric"
                 />
@@ -83,8 +95,8 @@ export default function EditTransaction({ navigation, route }) {
                         selectedValue={categoryName}
                         onValueChange={(itemValue, itemIndex) => onChangeCategory(itemValue)}>
                         <Picker.Item enabled={false} label={"Select Category"} style={tailwind(`text-xl text-xl text-neutral-400`)} />
-                        <Picker.Item style={tailwind("text-xl")} value={"income"} label={"Income"} />
-                        <Picker.Item style={tailwind("text-xl")} value={"expense"} label={"Expense"} />
+                        <Picker.Item style={tailwind("text-xl")} value={"Income"} label={"Income"} />
+                        <Picker.Item style={tailwind("text-xl")} value={"Expense"} label={"Expense"} />
                     </Picker>
                 </View>
                 <View style={tailwind("w-3/4 h-12 mx-auto mt-7 px-2 border-b-2 border-gray-500")}>

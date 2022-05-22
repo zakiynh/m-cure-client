@@ -9,14 +9,17 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { postTransaction } from '../src/store/actions/transactionActions';
+import { postTransaction, getCategories } from '../src/store/actions/transactionActions';
 
 export default function AddTransaction({ navigation }) {
     const tailwind = useTailwind()
-    const baseUrl = "https://m-cure-origin.herokuapp.com"
     const dispatch = useDispatch()
+
     const { access_token } = useSelector((state) => {
         return state.user
+    })
+    const { allCategories } = useSelector((state) => {
+        return state.transaction
     })
 
     const [amount, onChangeAmount] = useState("")
@@ -24,7 +27,6 @@ export default function AddTransaction({ navigation }) {
     const [CategoryId, onChangeCategoryId] = useState("")
     const [transactionDate, onChangeDate] = useState(new Date())
     const [categoryData, setData] = useState([])
-    const [allCategories, setAllCategories] = useState([])
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate;
@@ -49,16 +51,6 @@ export default function AddTransaction({ navigation }) {
         CategoryId
     }
 
-    // Get All Type Transaction
-    async function getCategories() {
-        try {
-            let response = await axios.get(`${baseUrl}/categories`)
-            setAllCategories(response.data.data)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     // Hit to Server Post Transaction
     async function addTransactionHandler() {
         try {
@@ -76,17 +68,19 @@ export default function AddTransaction({ navigation }) {
             console.log(err)
         }
     }
+
+    // Get All Categories
     useEffect(() => {
-        getCategories()
+        dispatch(getCategories())
     }, [])
 
     useEffect(() => {
-        if (categoryName === 'income') {
+        if (categoryName === 'Income') {
             setData(allCategories.incomeCategories)
-        } else if (categoryName === "expense") {
+        } else if (categoryName === "Expense") {
             setData(allCategories.expenseCategories)
         } else {
-            setData(allCategories)
+            setData([])
         }
     }, [categoryName])
 
@@ -106,8 +100,8 @@ export default function AddTransaction({ navigation }) {
                         selectedValue={categoryName}
                         onValueChange={(itemValue, itemIndex) => onChangeCategory(itemValue)}>
                         <Picker.Item enabled={false} label={"Select Category"} style={tailwind(`text-xl text-xl text-neutral-400`)} />
-                        <Picker.Item style={tailwind("text-xl")} value={"income"} label={"Income"} />
-                        <Picker.Item style={tailwind("text-xl")} value={"expense"} label={"Expense"} />
+                        <Picker.Item style={tailwind("text-xl")} value={"Income"} label={"Income"} />
+                        <Picker.Item style={tailwind("text-xl")} value={"Expense"} label={"Expense"} />
                     </Picker>
                 </View>
                 <View style={tailwind("w-3/4 h-12 mx-auto mt-7 px-2 border-b-2 border-gray-500")}>
@@ -115,9 +109,9 @@ export default function AddTransaction({ navigation }) {
                         selectedValue={CategoryId}
                         onValueChange={(itemValue, itemIndex) => onChangeCategoryId(itemValue)}>
                         <Picker.Item enabled={false} label='Select Transaction Type' style={tailwind(`text-xl text-xl text-neutral-400`)} />
-                        {categoryData.map((el) => {
+                        {categoryData.map((el, index) => {
                             return (
-                                <Picker.Item style={tailwind("text-xl")} value={el.id} label={el.type} />
+                                <Picker.Item key={index} style={tailwind("text-xl")} value={el.id} label={el.type} />
                             )
                         })}
                     </Picker>

@@ -1,16 +1,29 @@
-import { DETAIL_TRANSACTION_SUCCESS } from "../actions/actionTypes";
+import { DETAIL_TRANSACTION_SUCCESS, GET_CATEGORIES_SUCCESS } from "../actions/actionTypes";
 
 const initialState = {
   detailTransactions: {
-    // amount: "",
-    // transactionDate: "",
-    // Category: {
-    //   id: "",
-    //   name: "",
-    //   type: "",
-    //   icon: ""
-    // }
+    "id": 1,
+    "amount": 1000,
+    "transactionDate": "2022-05-20T16:32:59.639Z",
+    "imageReceipt": null,
+    "WalletId": 4,
+    "CategoryId": 5,
+    "createdAt": "2022-05-21T16:33:47.369Z",
+    "updatedAt": "2022-05-21T16:33:47.369Z",
+    "Category": {
+      "id": 5,
+      "name": "Income",
+      "type": "Collect Interest",
+      "icon": "https://static.moneylover.me/img/icon/icon_118.png",
+      "createdAt": "2022-05-20T14:16:36.307Z",
+      "updatedAt": "2022-05-20T14:16:36.307Z"
+    }
+  },
+  allCategories: {
+    expenseCategories: [],
+    incomeCategories: []
   }
+
 }
 
 function transactionReducer(state = initialState, action) {
@@ -19,6 +32,11 @@ function transactionReducer(state = initialState, action) {
       return {
         ...state,
         detailTransactions: action.payload
+      }
+    case GET_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        allCategories: action.payload
       }
     default:
       return state
