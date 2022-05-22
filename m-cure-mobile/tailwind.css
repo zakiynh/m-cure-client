@@ -18,6 +18,11 @@
   margin-bottom: 1rem
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem
+}
+
 .mt-3 {
   margin-top: 0.75rem
 }
@@ -28,6 +33,18 @@
 
 .mt-2 {
   margin-top: 0.5rem
+}
+
+.mt-5 {
+  margin-top: 1.25rem
+}
+
+.mb-7 {
+  margin-bottom: 1.75rem
+}
+
+.mb-9 {
+  margin-bottom: 2.25rem
 }
 
 .flex {
@@ -107,6 +124,11 @@
   background-color: rgb(243 243 243 / var(--tw-bg-opacity))
 }
 
+.bg-\[\#ea1616\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 22 22 / var(--tw-bg-opacity))
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem
@@ -115,6 +137,11 @@
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem
 }
 
 .pb-8 {
@@ -137,6 +164,10 @@
 
 .font-bold {
   font-weight: 700
+}
+
+.tracking-wide {
+  letter-spacing: 0.025em
 }
 
 .text-neutral-400 {

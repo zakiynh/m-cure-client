@@ -4,7 +4,7 @@ const initialState = {
   detailTransactions: {
     "id": 1,
     "amount": 1000,
-    "transactionDate": "2022-05-20T16:32:59.639Z",
+    "transactionDate": new Date(),
     "imageReceipt": null,
     "WalletId": 4,
     "CategoryId": 5,

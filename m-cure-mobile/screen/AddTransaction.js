@@ -4,7 +4,7 @@ import COLORS from '../src/colors';
 import { AntDesign } from '@expo/vector-icons';
 import { useTailwind } from "tailwind-rn"
 import { Picker } from '@react-native-picker/picker'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import axios from 'axios'
@@ -51,7 +51,7 @@ export default function AddTransaction({ navigation }) {
         CategoryId
     }
 
-    // Hit to Server Post Transaction
+    // Post Transaction
     async function addTransactionHandler() {
         try {
             let response = await dispatch(postTransaction(dataToSend, access_token))
@@ -120,7 +120,7 @@ export default function AddTransaction({ navigation }) {
                 <View style={tailwind("w-3/4 h-12 mx-auto mt-7 px-2 border-b-2 border-gray-500")}>
                     <Pressable style={tailwind("flex-row")} onPress={showDatepicker}>
                         <Text>
-                            <Icon name='calendar' size={30} />
+                            <Icon name='calendar-alt' size={30} />
                         </Text>
                         <Text style={tailwind("text-xl text-neutral-400")}> {transactionDate.toLocaleString('id-ID')}</Text>
                     </Pressable>
