@@ -30,18 +30,18 @@ export default function ConsultantList() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTIyOTUsImV4cCI6MTY1MzExOTQ5NX0.bTJmy7nH6iQ2wPJe3H7wiWobXLvzFgEHXilqHuwJ0vk"
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTU3NDEsImV4cCI6MTY1MzEyMjk0MX0.KZnmqQkJm1BZA6kEv0cb1be7XzEejlMEKHgnh3O_PDI"
             }
         })
         .then(res => {
             const data = res.data
-            // console.log("data: ", data);
+            console.log("data: ", data);
             setData(data)
         })
         .catch(err => {
             console.log(err)
         })
-    })
+    }, [])
     return (
         <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
