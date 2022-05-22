@@ -29,8 +29,8 @@ export default function LoginScreen({ navigation }) {
             if (response === 'success') {
                 console.log("berhasil login")
                 // swal berhasil login
-                // navigation.navigate('Home Screen')
-                navigation.navigate('Edit Transaction')
+                navigation.navigate('Home Screen')
+                // navigation.navigate('Edit Transaction')
             } else {
                 throw response
             }

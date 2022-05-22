@@ -104,9 +104,9 @@ export default function HomeScreen() {
                             </Text>
                         </View>
                     </View>
-                    
+
                 </View>
-                
+
             </>
         );
     };
@@ -125,21 +125,21 @@ export default function HomeScreen() {
                     return <Daily daily={item} />;
                 }}
             />
-            <View style={{flex: 1,justifyContent: "center", width: "100%", backgroundColor: "blue"}}>
-            <TouchableOpacity style={styles.button}
+            <View style={{ flex: 1, justifyContent: "center", width: "100%", backgroundColor: "blue" }}>
+                <TouchableOpacity style={styles.button}
                     onPress={() => {
-                        navigation.navigate("AddTransaction");
+                        navigation.navigate("Add Transaction");
                     }}
                 >
                     <View>
 
-                        <Image 
-                        style={styles.plus} source={plus} />
+                        <Image
+                            style={styles.plus} source={plus} />
                     </View>
-                    
+
                 </TouchableOpacity>
             </View>
-            
+
         </>
     );
 }

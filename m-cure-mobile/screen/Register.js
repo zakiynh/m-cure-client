@@ -94,7 +94,7 @@ export default function Register() {
                         <AntDesign style={tailwind("mx-auto my-auto")} name="google" size={19} color="black" >Sign Up With Google</AntDesign>
                     </View>
                     <View style={[tailwind("mx-auto"), styles.cancel]} >
-                        <Text style={[tailwind("mx-auto my-auto text-bold"), { fontWeight: "bold", fontSize: 22 }]} color="black"
+                        <Text style={[tailwind("mx-auto my-auto font-bold"), { fontWeight: "bold", fontSize: 22 }]} color="black"
                             onPress={() => {
                                 navigation.navigate('Login Screen')
                             }}>

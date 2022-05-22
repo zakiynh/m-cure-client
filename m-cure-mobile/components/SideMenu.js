@@ -4,11 +4,14 @@ import { View, Dimensions, StyleSheet, Text, Image, Modal, Pressable } from "rea
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTailwind } from "tailwind-rn"
 const wallet = require("../assets/icons8-wallet-48.png")
-
-
-
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
+
+if (Platform.OS === "android") {
+  require("intl");
+  require("intl/locale-data/jsonp/id-ID");
+}
+
 export default function SideMenu() {
   const tailwind = useTailwind()
   const baseUrl = "https://m-cure-origin.herokuapp.com"
@@ -24,7 +27,7 @@ export default function SideMenu() {
     try {
       let response = await axios.get(`${baseUrl}/users/wallet`, {
         headers: {
-          access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhbmRyZXdqYW5lYW5hbnRvQG1haWwuY29tIiwiaWF0IjoxNjUzMTMxNDYwLCJleHAiOjE2NTMxMzg2NjB9.b-tPJyKJ12bRngLWIskLJEf5Bzly4DJlM1mpTHc6Fjk'
+          access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0'
         }
       })
 
@@ -44,7 +47,7 @@ export default function SideMenu() {
           <Image source={wallet} />
           <View style={{ flexDirection: "column" }} >
             <Text>Cash</Text>
-            <Text style={tailwind("text-lg font-bold")}>Rp {totalMoney} </Text>
+            <Text style={tailwind("text-lg font-bold")}> {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(totalMoney)} </Text>
           </View>
         </View>
         <Icon name="notifications" size={25} />

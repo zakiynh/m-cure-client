@@ -71,6 +71,7 @@ export default function AddTransaction({ navigation }) {
 
     // Get All Categories
     useEffect(() => {
+
         dispatch(getCategories())
     }, [])
 

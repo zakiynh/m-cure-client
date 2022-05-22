@@ -27,20 +27,20 @@ export default function ConsultationHistory() {
     const tailwind = useTailwind();
     const [data, setData] = useState([])
     useEffect(() => {
-        axios( baseUrl + "users/histories", {
+        axios(baseUrl + "users/histories", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTU3NDEsImV4cCI6MTY1MzEyMjk0MX0.KZnmqQkJm1BZA6kEv0cb1be7XzEejlMEKHgnh3O_PDI",
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0",
             }
         })
-        .then(res => {
-            const data = res.data.data
-            setData(data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                const data = res.data.data
+                setData(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
     return (
         <View style={{ flex: 1 }}>
@@ -57,23 +57,23 @@ export default function ConsultationHistory() {
                             <View style={styles.consultant}>
                                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
                                     <Avatar.Image source={image} size={80} />
-                                    <View style={{ flexDirection: "row", justifyContent:"space-between", marginLeft: 20 }}>
+                                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginLeft: 20 }}>
                                         <View style={{ marginLeft: 10, marginRight: 10 }}>
-                                        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                                            <Title
-                                                style={[
-                                                    styles.consultantName,
-                                                    {
-                                                        marginTop: 15,
-                                                        marginBottom: 15,
-                                                    },
-                                                ]}
-                                            >
-                                                {item.name}
-                                            </Title>
-                                            <View style={{ paddingHorizontal: 140, paddingVertical: 20 }}><Caption style={[styles.chat]}>{item.date}</Caption></View>
+                                            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                                <Title
+                                                    style={[
+                                                        styles.consultantName,
+                                                        {
+                                                            marginTop: 15,
+                                                            marginBottom: 15,
+                                                        },
+                                                    ]}
+                                                >
+                                                    {item.name}
+                                                </Title>
+                                                <View style={{ paddingHorizontal: 140, paddingVertical: 20 }}><Caption style={[styles.chat]}>{item.date}</Caption></View>
 
-                                        </View>
+                                            </View>
                                             <Caption style={styles.chat}>{item.history}</Caption>
                                         </View>
                                     </View>
