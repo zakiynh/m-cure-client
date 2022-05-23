@@ -14,6 +14,10 @@ import store from './src/store/index'
 import LoginScreen from './screen/LoginScreen';
 import Register from './screen/Register';
 import HomeScreen from './screen/HomeScreen';
+import Report from './screen/Report';
+import ReportIncome from './screen/ReportIncome';
+import ReportExpense from './screen/ReportExpense';
+import Chat from './screen/Chat';
 
 const Stack = createNativeStackNavigator()
 
@@ -32,13 +36,16 @@ export default function App() {
             {/* <GestureHandlerRootView> */}
             <Stack.Navigator>
 
-              <Stack.Screen name="Login Screen" component={LoginScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
+              {/* <Stack.Screen name="Login Screen" component={LoginScreen} options={{ headerShown: false }} /> */}
+              {/* <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} /> */}
               {/* <Stack.Screen name="Home Screen" component={HomeScreen} /> */}
+              {/* <Stack.Screen name="Report" component={Report} /> */}
+              <Stack.Screen name="Chat" component={Chat} />
+              {/* <Stack.Screen name="Report Income" component={ReportIncome} /> */}
 
               {/* <LoginScreen /> */}
               {/* <MainStack /> */}
-              <Stack.Screen name="Home Screen" component={AppStack} options={{ headerShown: false }} />
+              {/* <Stack.Screen name="Home Screen" component={AppStack} options={{ headerShown: false }} /> */}
 
               {/* <AppStack /> */}
 

@@ -30,7 +30,7 @@ export default function LoginScreen() {
             if (response === 'success') {
                 console.log("berhasil login")
                 // swal berhasil login
-                navigation.navigate('Home Screen')
+                navigation.navigate('Report')
                 // navigation.navigate('Consultant List')
             } else {
                 throw response
