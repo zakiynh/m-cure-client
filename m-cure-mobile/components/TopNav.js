@@ -23,15 +23,14 @@ export default function TopNav() {
     return state.user
   })
   const tailwind = useTailwind()
-  const baseUrl = "https://m-cure-postgres.herokuapp.com"
 
-  const [totalMoney, setTotalMoney] = useState("")
-
+  const [totalMoney, setTotalMoney] = useState(0)
   useEffect(() => {
     getTotalMoney()
   }, [])
 
   async function getTotalMoney() {
+    const baseUrl = "https://m-cure-postgres.herokuapp.com"
     try {
       let response = await axios.get(`${baseUrl}/users/wallet`, {
         headers: {
@@ -45,12 +44,12 @@ export default function TopNav() {
       console.log(err)
     }
   }
+
   return (
     // <SafeAreaView>
     <View style={styles.mainContainer} >
       <View style={styles.topNav}>
         <Pressable onPress={() => {
-          console.log(navigation)
           navigation.openDrawer()
         }} >
           <Icon name="menu" size={30} />
@@ -59,7 +58,9 @@ export default function TopNav() {
           <Image source={wallet} />
           <View style={{ flexDirection: "column" }} >
             <Text>Cash</Text>
-            <Text style={tailwind("text-lg font-bold")}> {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(totalMoney)} </Text>
+            <Text
+              style={tailwind("text-lg font-bold")}
+            > {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(totalMoney)} </Text>
           </View>
         </View>
         <Icon name="notifications" size={25} />
@@ -71,9 +72,7 @@ export default function TopNav() {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    // flex: 1,
-    position: "relative",
-    // top: 25,
+    // position: "relative",
     zIndex: 2
   },
   topNav: {
@@ -82,7 +81,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 20,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    alignItems: "center"
   },
   button: {
     borderRadius: 20,

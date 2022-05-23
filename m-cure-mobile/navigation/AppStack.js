@@ -6,14 +6,13 @@ import { Image } from "react-native";
 
 import AddTransaction from "../screen/AddTransaction";
 import CustomDrawer from "../components/CustomDrawer";
-import ReportDetail from "../screen/ReportDetail";
 import ConsultantList from "../screen/ConsultantList";
 import ConsultationHistory from "../screen/ConsultationHistory";
 import Payment from "../screen/Payment";
-import LoginScreen from "../screen/LoginScreen";
 import HomeScreen from "../screen/HomeScreen";
-import MainStack from "./MainStack";
-import TopNav from "../components/TopNav";
+import Report from "../screen/Report";
+import EditTransaction from "../screen/EditTransaction";
+import ReportDetail from "../screen/ReportDetail";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator()
@@ -21,7 +20,6 @@ const Stack = createNativeStackNavigator()
 export default function AppStack() {
   return (
     <>
-      {/* <TopNav /> */}
       <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />}
         screenOptions={{
           headerShown: false,
@@ -34,7 +32,7 @@ export default function AppStack() {
         }}>
         <Drawer.Screen name="Home" component={HomeScreen} options={{
           drawerIcon: () => (
-            <Image source={require("../assets/icons8-general-ledger-100.png")} style={{ width: 30, height: 30 }} />
+            <Image source={require("../assets/icons8-home-page-100.png")} style={{ width: 30, height: 30 }} />
           )
         }} />
         <Drawer.Screen name="Add Transaction" component={AddTransaction} options={{
@@ -42,7 +40,7 @@ export default function AppStack() {
             <Image source={require("../assets/icons8-general-ledger-100.png")} style={{ width: 30, height: 30 }} />
           )
         }} />
-        <Drawer.Screen name="Monthly Report" component={ReportDetail} options={{
+        <Drawer.Screen name="Monthly Report" component={Report} options={{
           drawerIcon: () => (
             <Image source={require("../assets/icons8-pie-chart-100.png")} style={{ width: 30, height: 30 }} />
           )
@@ -57,11 +55,36 @@ export default function AppStack() {
             <Image source={require("../assets/icons8-consultant-64.png")} style={{ width: 30, height: 30 }} />
           )
         }} />
-        <Drawer.Screen name="Consultaion History" component={ConsultationHistory} options={{
+        <Drawer.Screen name="Consultation History" component={ConsultationHistory} options={{
           drawerIcon: () => (
             <Image source={require("../assets/icons8-search-chat-100.png")} style={{ width: 30, height: 30 }} />
           )
         }} />
+        {/* HIDDEN */}
+        <Drawer.Screen name="Edit Transaction" component={EditTransaction}
+          options={{
+            drawerIcon: () => null,
+            drawerLabel: () => null,
+            title: undefined,
+            drawerActiveBackgroundColor: "#fff",
+          }}
+        />
+        <Drawer.Screen name="Report Detail" component={ReportDetail}
+          options={{
+            drawerIcon: () => null,
+            drawerLabel: () => null,
+            title: undefined,
+            drawerActiveBackgroundColor: "#fff",
+          }}
+        />
+        <Drawer.Screen name="Payment" component={Payment}
+          options={{
+            drawerIcon: () => null,
+            drawerLabel: () => null,
+            title: undefined,
+            drawerActiveBackgroundColor: "#fff",
+          }}
+        />
       </Drawer.Navigator>
     </>
   )
