@@ -25,10 +25,8 @@ import VideoCall from './screen/VideoCall';
 import ReportDetail from './screen/ReportDetail';
 import ConsultationHistory from './screen/ConsultationHistory';
 import Profile from './screen/Profile';
-import Report from './screen/Report';
 import ReportIncome from './screen/ReportIncome';
 import ReportExpense from './screen/ReportExpense';
-import Chat from './screen/Chat';
 
 const Stack = createNativeStackNavigator()
 
@@ -51,7 +49,7 @@ export default function App() {
               <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
 
               {/* HOME SCREEN */}
-              <Stack.Screen name="Home Screen" component={HomeScreen} />
+              <Stack.Screen name="Home Screen" component={HomeScreen} options={{ headerShown: false }} />
 
               {/* USER */}
               <Stack.Screen name="Profile" component={Profile} />
@@ -61,8 +59,9 @@ export default function App() {
               <Stack.Screen name="Edit Transaction" component={EditTransaction} options={{ headerShown: false }} />
 
               {/* REPORT */}
-              <Stack.Screen name="Report" component={Report} />
-              <Stack.Screen name="ReportDetail" component={ReportDetail} />
+              <Stack.Screen name="Report" component={Report} options={{ headerShown: false }} />
+              <Stack.Screen name="Report Income" component={ReportIncome} options={{ headerShown: false }} />
+              <Stack.Screen name="Report Expense" component={ReportExpense} options={{ headerShown: false }} />
 
               {/* CONSULTANT SCREEN */}
               <Stack.Screen name="Consultant List" component={ConsultantList} />

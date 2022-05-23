@@ -11,10 +11,12 @@ const plus = require("../assets/icons8-plus.png");
 import { useSelector } from "react-redux";
 import AppStack from "../navigation/AppStack";
 import TopNav from "../components/TopNav";
+import { useIsFocused } from "@react-navigation/native";
 
 const baseUrl = "https://m-cure-postgres.herokuapp.com/";
 
 export default function HomeScreen() {
+  const isFocused = useIsFocused()
   const navigation = useNavigation();
   const tailwind = useTailwind();
   const [data, setData] = useState([]);
@@ -53,11 +55,11 @@ export default function HomeScreen() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [isFocused]);
 
   useEffect(() => {
     // 
-  }, [data2])
+  }, [data, data2])
 
   if (data2.length === 0) {
     return (
@@ -78,7 +80,7 @@ export default function HomeScreen() {
               <Text style={styles.textTitle}>This Month Overviews</Text>
               <MaterialIcons
                 onPress={() => {
-                  navigation.navigate("Report");
+                  navigation.navigate('App', { screen: 'Monthly Report' });
                 }}
                 style={[tailwind("mr-6")]}
                 name="navigate-next"

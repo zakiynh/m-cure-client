@@ -11,6 +11,8 @@ import { VictoryPie } from "victory-native";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import TopNav from "../components/TopNav";
+import { useIsFocused } from "@react-navigation/native";
 
 if (Platform.OS === "android") {
   require("intl");
@@ -18,6 +20,7 @@ if (Platform.OS === "android") {
 }
 
 export default function ReportIncome() {
+  const isFocused = useIsFocused()
   const [income, setIncome] = useState(0);
   const [detailIncome, setDetailIncome] = useState();
   const [dataIncome, setDataIncome] = useState([]);
@@ -30,6 +33,7 @@ export default function ReportIncome() {
   const header = () => {
     return (
       <>
+        <TopNav />
         <View style={{ alignSelf: "center" }}>
           <Text
             style={{
@@ -43,7 +47,7 @@ export default function ReportIncome() {
           </Text>
           <Text style={{
             alignSelf: "center",
-            color: "red",
+            color: "blue",
             fontSize: 18,
             fontWeight: "500"
           }}>
@@ -56,7 +60,7 @@ export default function ReportIncome() {
 
         <View style={{ marginLeft: 0, marginTop: -50, marginBottom: -50 }}>
           <VictoryPie
-            colorScale={["tomato", "orangered", "crimson", "darkorange", "chocolate"]}
+            colorScale={["navy", "cyan", "cornflowerblue", "blue"]}
             padding={100}
             data={dataIncome}
             width={400}
@@ -110,7 +114,7 @@ export default function ReportIncome() {
         </View>
 
         <View style={{ flex: 3.8, paddingVertical: 10 }}>
-          <Text style={{ color: "red" }}>
+          <Text style={{ color: "blue" }}>
             {new Intl.NumberFormat("id-ID", {
               style: "currency",
               currency: "IDR",
@@ -152,7 +156,7 @@ export default function ReportIncome() {
     }
 
     fetchData();
-  }, []);
+  }, [isFocused]);
 
   useEffect(() => {
     if (detailIncome) {

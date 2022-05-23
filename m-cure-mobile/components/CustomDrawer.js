@@ -1,8 +1,15 @@
 import React from "react";
 import { View, Text, ImageBackground, Image, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function CustomDrawer(props) {
+
+  const { detailUser } = useSelector((state) => {
+    return state.user
+  })
+
   return (
     <>
       <View style={{ flex: 1 }}>
@@ -11,9 +18,10 @@ export default function CustomDrawer(props) {
           <View>
             <Pressable >
               <View style={styles.headerProfile}>
-                <Image source={{ uri: "https://i.pinimg.com/564x/ab/e0/4f/abe04fd5c93978ed06755493506715ec.jpg" }} style={styles.imageProfile} />
+
+                <Image source={{ uri: detailUser.imageProfile ? detailUser.imageProfile : "https://www.hecmsenior.com/wp-content/uploads/2021/06/Profile-Pic-Icon.png" }} style={styles.imageProfile} />
                 <View>
-                  <Text style={styles.username}>Kim Seonho</Text>
+                  <Text style={styles.username}>{detailUser.username}</Text>
                   <View style={styles.ticketContainer}>
                     <Image source={require("../assets/icons8-ticket-confirmed-48.png")} style={{ width: 25, height: 25, marginHorizontal: 10 }} />
                     <Text>Chat Ticket: 3</Text>
@@ -47,11 +55,12 @@ export default function CustomDrawer(props) {
 
 const styles = StyleSheet.create({
   imageProfile: {
-    height: 80,
-    width: 80,
+    height: 75,
+    width: 75,
     borderRadius: 40,
     marginBottom: 10,
-    padding: 20
+    padding: 20,
+    resizeMode: "cover"
   },
   username: {
     fontSize: 18,

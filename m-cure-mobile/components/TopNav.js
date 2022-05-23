@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react"
 import { View, Dimensions, StyleSheet, Text, Image, Modal, Pressable } from "react-native"
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTailwind } from "tailwind-rn"
-import { useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigation, DrawerActions } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { DrawerActions } from "@react-navigation/native";
 
 const wallet = require("../assets/icons8-wallet-48.png")
 const windowWidth = Dimensions.get('window').width
@@ -18,15 +17,20 @@ if (Platform.OS === "android") {
 }
 
 export default function TopNav() {
+  const dispatch = useDispatch()
   const navigation = useNavigation()
   const { access_token } = useSelector((state) => {
     return state.user
   })
-  const tailwind = useTailwind()
 
+  const tailwind = useTailwind()
   const [totalMoney, setTotalMoney] = useState(0)
+
   useEffect(() => {
+    // let isMounted = true
+    // if (isMounted) {
     getTotalMoney()
+    // }
   }, [])
 
   async function getTotalMoney() {
@@ -50,7 +54,7 @@ export default function TopNav() {
     <View style={styles.mainContainer} >
       <View style={styles.topNav}>
         <Pressable onPress={() => {
-          navigation.openDrawer()
+          navigation.dispatch(DrawerActions.openDrawer())
         }} >
           <Icon name="menu" size={30} />
         </Pressable>
@@ -72,7 +76,7 @@ export default function TopNav() {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    // position: "relative",
+    position: "relative",
     zIndex: 2
   },
   topNav: {

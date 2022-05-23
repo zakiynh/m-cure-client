@@ -11,6 +11,8 @@ import { VictoryPie } from "victory-native";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import TopNav from "../components/TopNav";
+import { useIsFocused } from "@react-navigation/native";
 
 if (Platform.OS === "android") {
   require("intl");
@@ -18,6 +20,7 @@ if (Platform.OS === "android") {
 }
 
 export default function ReportExpense() {
+  const isFocused = useIsFocused()
   const [expense, setExpense] = useState(0);
   const [detailExpense, setDetailExpense] = useState();
   const [dataExpense, setDataExpense] = useState([]);
@@ -30,6 +33,7 @@ export default function ReportExpense() {
   const header = () => {
     return (
       <>
+        <TopNav />
         <View style={{ alignSelf: "center" }}>
           <Text
             style={{
@@ -70,9 +74,7 @@ export default function ReportExpense() {
           marginBottom: 20
         }}
         >
-
         </View>
-
       </>
     )
   }
@@ -153,7 +155,7 @@ export default function ReportExpense() {
     }
 
     fetchData();
-  }, []);
+  }, [isFocused]);
 
 
   useEffect(() => {
@@ -216,29 +218,33 @@ export default function ReportExpense() {
   //{new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(expense)}
 
   return (
-    <View style={{ color: "blue", flex: 1 }}>
+    <>
 
-      <View
-        style={{
-          color: "blue",
-          borderTopWidth: 0,
-          borderTopColor: "lightgrey",
-        }}
-      >
-        <FlatList
-          ListHeaderComponent={header}
-          contentContainerStyle={{
-            marginTop: 10,
-            paddingBottom: 10,
+      <View style={{ color: "blue", flex: 1 }}>
+
+
+        <View
+          style={{
+            color: "blue",
+            borderTopWidth: 0,
+            borderTopColor: "lightgrey",
           }}
-          numColumns={1}
-          data={dataExpenseCategories}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
+        >
+          <FlatList
+            ListHeaderComponent={header}
+            contentContainerStyle={{
+              marginTop: 10,
+              paddingBottom: 10,
+            }}
+            numColumns={1}
+            data={dataExpenseCategories}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
 
-    </View>
+      </View>
+    </>
   );
 }
 

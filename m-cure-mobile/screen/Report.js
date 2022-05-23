@@ -1,17 +1,21 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Touchable } from "react-native";
 import { VictoryPie } from "victory-native";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import TopNav from "../components/TopNav";
+import { useIsFocused } from "@react-navigation/native";
+
 
 if (Platform.OS === "android") {
   require("intl");
   require("intl/locale-data/jsonp/id-ID");
 }
 
+export default function Report({ navigation }) {
+  const isFocused = useIsFocused()
 
-export default function Report() {
   const [expense, setExpense] = useState(0);
   const [income, setIncome] = useState(0);
   const [detailExpense, setDetailExpense] = useState();
@@ -49,7 +53,7 @@ export default function Report() {
     }
 
     fetchData();
-  }, [total]);
+  }, [total, isFocused]);
 
   useEffect(() => {
     if (detailIncome && detailExpense) {
@@ -94,12 +98,18 @@ export default function Report() {
   }
 
   return (
-    <ScrollView style={styles.container}>
 
+
+    <ScrollView style={styles.container}>
+      <TopNav />
       <View style={{ flex: 1, flexDirection: "row", backgroundColor: "white", height: 350 }}>
         <View style={{ flex: 1, marginLeft: 0 }}>
           <View style={{ alignSelf: "center", marginTop: 20 }}>
+
             <Text
+              onPress={() => {
+                navigation.navigate("Report Income")
+              }}
               style={{
                 alignSelf: "center",
                 fontSize: 15,
@@ -109,6 +119,7 @@ export default function Report() {
             >
               Income
             </Text>
+
             <Text style={{ alignSelf: "center", color: "blue" }}>{new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(income)}</Text>
           </View>
           <VictoryPie
@@ -118,10 +129,15 @@ export default function Report() {
             width={200}
           />
         </View>
+
+
         <View style={{ borderColor: "lightgrey" }}></View>
         <View>
           <View style={{ alignSelf: "center", marginTop: 20 }}>
             <Text
+              onPress={() => {
+                navigation.navigate("Report Expense")
+              }}
               style={{
                 alignSelf: "center",
                 fontSize: 15,
@@ -185,7 +201,7 @@ export default function Report() {
 
       </View>
 
-    </ScrollView>
+    </ScrollView >
   );
 }
 
