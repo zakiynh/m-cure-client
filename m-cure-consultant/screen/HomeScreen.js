@@ -63,14 +63,14 @@ export default function HomeScreen() {
                     renderItem={({ item }) => {
                         return (
                             <View style={styles.consultant}>
-                                <View style={{ flexDirection: "row", marginTop: 15 }}>
+                                <View style={{ flexDirection: "row", marginTop: 15, width: '100%'  }}>
                                     <Avatar.Image source={item.imageProfile} size={80} />
                                     <View style={{ marginLeft: 20 }}>
                                         <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15, }}>
-                                            <Text style={styles.button}>Start Consulting</Text>
+                                            {/* <Text style={styles.button}>Start Consulting</Text> */}
                                             {/* {item.User.videoCode ? <Entypo style={[styles.logo, {marginLeft: 30}]} name="chat" size={30} color={COLORS.mainGreen} /> :
                                             <FontAwesome style={[styles.logo, {marginLeft: 30}]} name="video-camera" size={30} color={COLORS.mainGreen} />} */}
-                                            <Entypo style={[styles.logo, {marginLeft: 30}]} name="chat" size={30} color={COLORS.mainGreen} />
+                                            {/* <Entypo style={[styles.logo, {marginLeft: 30}]} name="chat" size={30} color={COLORS.mainGreen} /> */}
                                             <FontAwesome
                                             onPress={() => {
                                                 videoCall()
