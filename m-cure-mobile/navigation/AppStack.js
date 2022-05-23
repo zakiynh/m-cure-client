@@ -12,7 +12,9 @@ import Payment from "../screen/Payment";
 import HomeScreen from "../screen/HomeScreen";
 import Report from "../screen/Report";
 import EditTransaction from "../screen/EditTransaction";
-import ReportDetail from "../screen/ReportDetail";
+import Chat from "../screen/Chat";
+import ReportIncome from "../screen/ReportIncome"
+import ReportExpense from "../screen/ReportExpense"
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator()
@@ -30,7 +32,7 @@ export default function AppStack() {
             fontSize: 16
           }
         }}>
-        <Drawer.Screen name="Home" component={HomeScreen} options={{
+        <Drawer.Screen name="Home Screen" component={HomeScreen} options={{
           drawerIcon: () => (
             <Image source={require("../assets/icons8-home-page-100.png")} style={{ width: 30, height: 30 }} />
           )
@@ -60,6 +62,7 @@ export default function AppStack() {
             <Image source={require("../assets/icons8-search-chat-100.png")} style={{ width: 30, height: 30 }} />
           )
         }} />
+
         {/* HIDDEN */}
         <Drawer.Screen name="Edit Transaction" component={EditTransaction}
           options={{
@@ -69,7 +72,7 @@ export default function AppStack() {
             drawerActiveBackgroundColor: "#fff",
           }}
         />
-        <Drawer.Screen name="Report Detail" component={ReportDetail}
+        <Drawer.Screen name="Payment" component={Payment}
           options={{
             drawerIcon: () => null,
             drawerLabel: () => null,
@@ -77,7 +80,15 @@ export default function AppStack() {
             drawerActiveBackgroundColor: "#fff",
           }}
         />
-        <Drawer.Screen name="Payment" component={Payment}
+        <Drawer.Screen name="Report Income" component={ReportIncome}
+          options={{
+            drawerIcon: () => null,
+            drawerLabel: () => null,
+            title: undefined,
+            drawerActiveBackgroundColor: "#fff",
+          }}
+        />
+        <Drawer.Screen name="Report Expense" component={ReportExpense}
           options={{
             drawerIcon: () => null,
             drawerLabel: () => null,

@@ -1,8 +1,12 @@
-import { LOGIN_USER_SUCCESS } from "../actions/actionTypes";
+import { DETAIL_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../actions/actionTypes";
 
 const initialState = {
-  email: "",
-  username: "",
+  detailUser: {
+    email: "",
+    username: "",
+    name: "",
+    imageProfile: ""
+  },
   access_token: "",
 }
 
@@ -11,8 +15,13 @@ function userReducer(state = initialState, action) {
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
-        email: action.payload.email,
-        access_token: action.payload.access_token
+        access_token: action.payload.access_token,
+        detailUser: {
+          email: action.payload.user.email,
+          username: action.payload.user.username,
+          name: action.payload.user.name,
+          imageProfile: action.payload.user.imageProfile
+        }
       }
     default:
       return state

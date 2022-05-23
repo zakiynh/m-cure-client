@@ -8,41 +8,49 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useTailwind } from "tailwind-rn";
 import axios from "axios";
 import TopNav from '../components/TopNav';
+import { useSelector } from 'react-redux';
 
 const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?pid=ImgDet&w=860&h=1081&rs=1" };
-// const data = [
-//     { image, name: "Consultant A", history: "terimakasih", date: "13/06/2022" },
-//     { image, name: "Consultant B", history: "oke", date: "13/06/2021" },
-//     { image, name: "Consultant C", history: "sama-sama", date: "13/02/2022" },
-//     { image, name: "Consultant D", history: "uhuy", date: "13/01/2022" },
-//     { image, name: "Consultant E", history: "ini", date: "13/01/2022" },
-//     { image, name: "Consultant F", history: "history", date: "13/02/2022" },
-//     { image, name: "Consultant G", history: "chat", date: "13/02/2022" },
-//     { image, name: "Consultant H", history: "sekian", date: "13/01/2022" },
-//     { image, name: "Consultant I", history: "dan", date: "13/02/2022" },
-//     { image, name: "Consultant J", history: "terimakasih", date: "13/04/2022" },
-// ];
+
+const data = [
+    { image, name: "Consultant A", history: "terimakasih", date: "13/06/2022" },
+    { image, name: "Consultant B", history: "oke", date: "13/06/2021" },
+    { image, name: "Consultant C", history: "sama-sama", date: "13/02/2022" },
+    { image, name: "Consultant D", history: "uhuy", date: "13/01/2022" },
+    { image, name: "Consultant E", history: "ini", date: "13/01/2022" },
+    { image, name: "Consultant F", history: "history", date: "13/02/2022" },
+    { image, name: "Consultant G", history: "chat", date: "13/02/2022" },
+    { image, name: "Consultant H", history: "sekian", date: "13/01/2022" },
+    { image, name: "Consultant I", history: "dan", date: "13/02/2022" },
+    { image, name: "Consultant J", history: "terimakasih", date: "13/04/2022" },
+];
+
 const baseUrl = "https://m-cure-postgres.herokuapp.com/"
 
 export default function ConsultationHistory() {
     const tailwind = useTailwind();
-    const [data, setData] = useState([])
-    useEffect(() => {
-        axios(baseUrl + "users/histories", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0",
-            }
-        })
-            .then(res => {
-                const data = res.data.data
-                setData(data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [])
+    // const [data, setData] = useState([])
+    const { access_token } = useSelector((state) => {
+        return state.user
+    })
+
+    // useEffect(() => {
+    //     axios(baseUrl + "users/histories", {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             access_token
+    //         }
+    //     })
+    //         .then(res => {
+    //             // const data = res.data.data
+    //             setData(data)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // }, [])
+
     return (
         <View style={{ flex: 1 }}>
 
