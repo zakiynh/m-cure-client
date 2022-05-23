@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ImageBackground, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, ImageBackground, Image, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
 
 export default function CustomDrawer(props) {
@@ -9,20 +9,22 @@ export default function CustomDrawer(props) {
         <DrawerContentScrollView {...props}
           contentContainerStyle={{ backgroundColor: "#B4E197" }}>
           <View>
-            <View style={styles.headerProfile}>
-              <Image source={{ uri: "https://i.pinimg.com/564x/ab/e0/4f/abe04fd5c93978ed06755493506715ec.jpg" }} style={styles.imageProfile} />
-              <View>
-                <Text style={styles.username}>Kim Seonho</Text>
-                <View style={styles.ticketContainer}>
-                  <Image source={require("../assets/icons8-ticket-confirmed-48.png")} style={{ width: 25, height: 25, marginHorizontal: 10 }} />
-                  <Text>Chat Ticket: 3</Text>
-                </View>
-                <View style={styles.ticketContainer}>
-                  <Image source={require("../assets/icons8-ticket-confirmed-48.png")} style={{ width: 25, height: 25, marginHorizontal: 10 }} />
-                  <Text>Video Ticket: 103</Text>
+            <Pressable >
+              <View style={styles.headerProfile}>
+                <Image source={{ uri: "https://i.pinimg.com/564x/ab/e0/4f/abe04fd5c93978ed06755493506715ec.jpg" }} style={styles.imageProfile} />
+                <View>
+                  <Text style={styles.username}>Kim Seonho</Text>
+                  <View style={styles.ticketContainer}>
+                    <Image source={require("../assets/icons8-ticket-confirmed-48.png")} style={{ width: 25, height: 25, marginHorizontal: 10 }} />
+                    <Text>Chat Ticket: 3</Text>
+                  </View>
+                  <View style={styles.ticketContainer}>
+                    <Image source={require("../assets/icons8-ticket-confirmed-48.png")} style={{ width: 25, height: 25, marginHorizontal: 10 }} />
+                    <Text>Video Ticket: 103</Text>
+                  </View>
                 </View>
               </View>
-            </View>
+            </Pressable>
           </View>
           <View>
             <View style={{ flex: 1, paddingTop: 10, backgroundColor: "#fff" }}>

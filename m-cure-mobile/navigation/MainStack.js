@@ -27,27 +27,23 @@ export default function MainStack() {
                 paddingVertical: 8,
             }}
         >
-            <Stack.Navigator>
-                {/* <Stack.Screen
-                    name="navigation" component={TopNav}
-                    options={{
-                        headerShown: false
-                    }} /> */}
-                {/* <Stack.Screen name="Category" component={Category} /> */}
-                {/* <Stack.Screen name="Chat" component={Chat} /> */}
-                {/* <Stack.Screen name="Login Screen" component={LoginScreen} options={{ headerShown: false }} /> */}
-                {/* <Stack.Screen name="Consultant List" component={ConsultantList} /> */}
-                {/* <Stack.Screen name="Consultation History" component={ConsultationHistory} /> */}
-                {/* <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} /> */}
-                {/* <Stack.Screen name="Edit Transaction" component={EditTransaction} /> */}
-                {/* <Stack.Screen name="Add Transaction" component={AddTransaction} /> */}
-                <Stack.Screen name="Home Screen" component={HomeScreen} />
-                {/* <Stack.Screen name="Payment" component={Payment} /> */}
-                {/* <Stack.Screen name="Profile" component={Profile} /> */}
-                {/* <Stack.Screen name="Report" component={Report} /> */}
-                {/* <Stack.Screen name="ReportDetail" component={ReportDetail} /> */}
-                {/* <Stack.Screen name="VideoCall" component={VideoCall} /> */}
-            </Stack.Navigator>
+            {/* <Stack.Navigator> */}
+            {/* <Stack.Screen name="Login Screen" component={LoginScreen} options={{ headerShown: false }} /> */}
+            {/* <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} /> */}
+
+            {/* <Stack.Screen name="Category" component={Category} /> */}
+            {/* <Stack.Screen name="Chat" component={Chat} /> */}
+            {/* <Stack.Screen name="Consultant List" component={ConsultantList} /> */}
+            {/* <Stack.Screen name="Consultation History" component={ConsultationHistory} /> */}
+            {/* <Stack.Screen name="Edit Transaction" component={EditTransaction} /> */}
+            {/* <Stack.Screen name="Add Transaction" component={AddTransaction} /> */}
+            <Stack.Screen name="Home Screen" component={HomeScreen} />
+            {/* <Stack.Screen name="Payment" component={Payment} /> */}
+            {/* <Stack.Screen name="Profile" component={Profile} /> */}
+            {/* <Stack.Screen name="Report" component={Report} /> */}
+            <Stack.Screen name="ReportDetail" component={ReportDetail} />
+            {/* <Stack.Screen name="VideoCall" component={VideoCall} /> */}
+            {/* </Stack.Navigator> */}
         </SafeAreaView >
     );
 }

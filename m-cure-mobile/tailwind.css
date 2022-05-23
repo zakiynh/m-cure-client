@@ -11,6 +11,11 @@
   margin-right: auto
 }
 
+.my-7 {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem
+}
+
 .my-auto {
   margin-top: auto;
   margin-bottom: auto
@@ -42,10 +47,6 @@
   margin-bottom: 1rem
 }
 
-.mt-10 {
-  margin-top: 2.5rem
-}
-
 .mt-2 {
   margin-top: 0.5rem
 }
@@ -54,16 +55,12 @@
   display: flex
 }
 
-.h-3\/4 {
-  height: 75%
+.h-full {
+  height: 100%
 }
 
 .h-12 {
   height: 3rem
-}
-
-.h-full {
-  height: 100%
 }
 
 .h-2\/5 {
@@ -163,9 +160,9 @@
   line-height: 1.75rem
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem
 }
 
 .font-bold {

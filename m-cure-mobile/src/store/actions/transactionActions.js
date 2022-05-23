@@ -62,7 +62,7 @@ export const getDetailTransactions = (id, access_token) => {
 export const getCategories = () => {
   return async (dispatch) => {
     try {
-      let response = await axios.get(`https://m-cure-origin.herokuapp.com/categories`)
+      let response = await axios.get(`${baseUrl}/categories`)
       dispatch(getCategoriesSuccess(response.data.data))
       return "success"
     } catch (error) {
