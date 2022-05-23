@@ -9,7 +9,7 @@ import { useTailwind } from "tailwind-rn";
 import axios from "axios";
 
 const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?pid=ImgDet&w=860&h=1081&rs=1" };
-const data = [
+const data2 = [
     { image, name: "User A", history: "terimakasih", date: "13/06/2022" },
     { image, name: "User B", history: "oke", date: "13/06/2021" },
     { image, name: "User C", history: "sama-sama", date: "13/02/2022" },
@@ -21,27 +21,27 @@ const data = [
     { image, name: "User I", history: "dan", date: "13/02/2022" },
     { image, name: "User J", history: "terimakasih", date: "13/04/2022" },
 ];
-const baseUrl = "https://m-cure-origin.herokuapp.com/";
+const baseUrl = "https://m-cure-postgres.herokuapp.com/users/consultants";
 
 export default function ConsultationHistory() {
     const tailwind = useTailwind();
-    // const [data, setData] = useState([])
-    // useEffect(() => {
-    //     axios( baseUrl + "users/histories", {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMxMTU3NDEsImV4cCI6MTY1MzEyMjk0MX0.KZnmqQkJm1BZA6kEv0cb1be7XzEejlMEKHgnh3O_PDI",
-    //         }
-    //     })
-    //     .then(res => {
-    //         const data = res.data.data
-    //         setData(data)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // }, [])
+    const [data, setData] = useState([])
+    useEffect(() => {
+        axios( baseUrl + "/histories/close", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkZWJieXJpYUBtYWlsLmNvbSIsImlhdCI6MTY1MzI5NDYyOCwiZXhwIjoxNjUzMzE2MjI4fQ.8AzEeXVZ9kHmUE3k64rx4OIBxjmhclpdj6WJLsmwkHs",
+            }
+        })
+        .then(res => {
+            const data = res.data.data
+            setData(data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, [])
     return (
         <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
@@ -51,7 +51,7 @@ export default function ConsultationHistory() {
                         marginTop: 10,
                         paddingBottom: 70,
                     }}
-                    data={data}
+                    data={data2}
                     renderItem={({ item }) => {
                         return (
                             <View style={styles.consultant}>
