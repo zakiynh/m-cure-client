@@ -25,6 +25,10 @@ import VideoCall from './screen/VideoCall';
 import ReportDetail from './screen/ReportDetail';
 import ConsultationHistory from './screen/ConsultationHistory';
 import Profile from './screen/Profile';
+import Report from './screen/Report';
+import ReportIncome from './screen/ReportIncome';
+import ReportExpense from './screen/ReportExpense';
+import Chat from './screen/Chat';
 
 const Stack = createNativeStackNavigator()
 
