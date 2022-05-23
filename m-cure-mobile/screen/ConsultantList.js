@@ -6,6 +6,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?pid=ImgDet&w=860&h=1081&rs=1" };
 // const data = [
@@ -21,16 +22,19 @@ const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?p
 //     {image, name: "Consultant J"},
 // ]
 
-const baseUrl = "https://m-cure-origin.herokuapp.com/"
+const baseUrl = "https://m-cure-postgres.herokuapp.com/"
 
 export default function ConsultantList() {
+    const { access_token } = useSelector((state) => {
+        return state.user
+    })
     const [data, setData] = useState([])
     useEffect(() => {
-        axios(baseUrl + "users/consultants", {
+        axios(baseUrl + "users/consultant-list", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0"
+                access_token
             }
         })
             .then(res => {

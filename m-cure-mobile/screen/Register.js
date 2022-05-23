@@ -7,7 +7,7 @@ import COLORS from "../src/colors";
 import axios from "axios";
 
 const logo = require("../assets/logo-wo-bg.png");
-const baseUrl = "https://m-cure-origin.herokuapp.com/"
+const baseUrl = "https://m-cure-postgres.herokuapp.com/"
 
 export default function Register() {
     const tailwind = useTailwind();

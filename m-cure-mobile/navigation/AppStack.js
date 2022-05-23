@@ -1,17 +1,68 @@
-// import React from "react";
+import React from "react";
 
-// import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Image } from "react-native";
 
-// import AddTransaction from "../screen/AddTransaction";
-// import CustomDrawer from "../components/CustomDrawer";
+import AddTransaction from "../screen/AddTransaction";
+import CustomDrawer from "../components/CustomDrawer";
+import ReportDetail from "../screen/ReportDetail";
+import ConsultantList from "../screen/ConsultantList";
+import ConsultationHistory from "../screen/ConsultationHistory";
+import Payment from "../screen/Payment";
+import LoginScreen from "../screen/LoginScreen";
+import HomeScreen from "../screen/HomeScreen";
+import MainStack from "./MainStack";
+import TopNav from "../components/TopNav";
 
-// const Drawer = createDrawerNavigator();
-// const Stack = createNativeStackNavigator()
+const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator()
 
-// export default function AppStack() {
-//   return (
-//     <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />}>
-//       <Drawer.Screen name="Add Transaction" component={AddTransaction} />
-//     </Drawer.Navigator>
-//   )
-// }
+export default function AppStack() {
+  return (
+    <>
+      {/* <TopNav /> */}
+      <Drawer.Navigator drawerContent={props => <CustomDrawer {...props} />}
+        screenOptions={{
+          headerShown: false,
+          drawerActiveBackgroundColor: "#C2EBA7",
+          drawerLabelStyle:
+          {
+            marginLeft: -20,
+            fontSize: 16
+          }
+        }}>
+        <Drawer.Screen name="Home" component={HomeScreen} options={{
+          drawerIcon: () => (
+            <Image source={require("../assets/icons8-general-ledger-100.png")} style={{ width: 30, height: 30 }} />
+          )
+        }} />
+        <Drawer.Screen name="Add Transaction" component={AddTransaction} options={{
+          drawerIcon: () => (
+            <Image source={require("../assets/icons8-general-ledger-100.png")} style={{ width: 30, height: 30 }} />
+          )
+        }} />
+        <Drawer.Screen name="Monthly Report" component={ReportDetail} options={{
+          drawerIcon: () => (
+            <Image source={require("../assets/icons8-pie-chart-100.png")} style={{ width: 30, height: 30 }} />
+          )
+        }} />
+        <Drawer.Screen name="Buy Consultation Ticket" component={Payment} options={{
+          drawerIcon: () => (
+            <Image source={require("../assets/icons8-ticket-100.png")} style={{ width: 30, height: 30 }} />
+          )
+        }} />
+        <Drawer.Screen name="Consultant List" component={ConsultantList} options={{
+          drawerIcon: () => (
+            <Image source={require("../assets/icons8-consultant-64.png")} style={{ width: 30, height: 30 }} />
+          )
+        }} />
+        <Drawer.Screen name="Consultaion History" component={ConsultationHistory} options={{
+          drawerIcon: () => (
+            <Image source={require("../assets/icons8-search-chat-100.png")} style={{ width: 30, height: 30 }} />
+          )
+        }} />
+      </Drawer.Navigator>
+    </>
+  )
+}

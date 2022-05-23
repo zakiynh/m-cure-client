@@ -8,14 +8,20 @@ import axios from "axios";
 import Daily from "../components/Daily";
 import { useNavigation } from "@react-navigation/native";
 const plus = require("../assets/icons8-plus.png");
+import { useSelector } from "react-redux";
+import AppStack from "../navigation/AppStack";
 
-const baseUrl = "https://m-cure-origin.herokuapp.com/";
+const baseUrl = "https://m-cure-postgres.herokuapp.com/";
 
 export default function HomeScreen() {
     const navigation = useNavigation();
     const tailwind = useTailwind();
     const [data, setData] = useState([]);
     const [data2, setData2] = useState([]);
+    const { access_token } = useSelector((state) => {
+        return state.user
+    })
+
     useEffect(() => {
         if (Platform.OS === "android") {
             require("intl");
@@ -25,8 +31,7 @@ export default function HomeScreen() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                access_token:
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0",
+                access_token
             },
         })
             .then((res) => {
@@ -36,8 +41,7 @@ export default function HomeScreen() {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        access_token:
-                            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0",
+                        access_token
                     },
                 });
             })
@@ -48,7 +52,7 @@ export default function HomeScreen() {
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
+    }, [data2]);
 
     if (data2.length === 0) {
         return (
@@ -62,7 +66,8 @@ export default function HomeScreen() {
     const header = () => {
         return (
             <>
-                <View style={{ backgroundColor: COLORS.chatGray }}>
+                <AppStack />
+                <View style={{ backgroundColor: COLORS.chatGray, flex: 1, minHeight: "100%" }}>
                     <View style={{ backgroundColor: COLORS.white }}>
                         <View style={styles.overview}>
                             <View style={styles.row}>
@@ -120,12 +125,12 @@ export default function HomeScreen() {
                     marginTop: 10,
                     paddingBottom: 70,
                 }}
-                data={data2.data}
+                data={data.data}
                 renderItem={({ item }) => {
                     return <Daily daily={item} />;
                 }}
             />
-            <View style={{ flex: 1, justifyContent: "center", width: "100%", backgroundColor: "blue" }}>
+            <View style={{ flex: 1, justifyContent: "center", width: "100%" }}>
                 <TouchableOpacity style={styles.button}
                     onPress={() => {
                         navigation.navigate("Add Transaction");

@@ -5,14 +5,15 @@ import { useDispatch } from "react-redux";
 import axios from 'axios'
 import COLORS from "../src/colors";
 import { postLoginUser } from "../src/store/actions/userActions";
+import { useNavigation } from "@react-navigation/native";
 
 const logo = require("../assets/logo-wo-bg.png")
 const windowWidth = Dimensions.get('window').width
 
-export default function LoginScreen({ navigation }) {
-    const baseUrl = "https://m-cure-origin.herokuapp.com"
+export default function LoginScreen() {
     const tailwind = useTailwind()
     const dispatch = useDispatch()
+    const navigation = useNavigation()
 
     const [email, onChangeEmail] = useState("")
     const [password, onChangePassword] = useState("")
@@ -30,7 +31,7 @@ export default function LoginScreen({ navigation }) {
                 console.log("berhasil login")
                 // swal berhasil login
                 navigation.navigate('Home Screen')
-                // navigation.navigate('Edit Transaction')
+                // navigation.navigate('Consultant List')
             } else {
                 throw response
             }
@@ -44,7 +45,7 @@ export default function LoginScreen({ navigation }) {
         <>
             <ScrollView>
                 <View style={styles.container}>
-                    <View style={tailwind("mx-auto my-5")}>
+                    <View style={[tailwind("mx-auto my-5"), styles.logo]}>
                         <Image source={logo} style={{ width: 200, height: 200 }} />
                     </View>
                     <View style={tailwind(`bg-[#b4e197] w-80 h-2/5 rounded-3xl mx-auto pb-8`)}>
@@ -84,5 +85,8 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    logo: {
+        marginTop: "10%"
     }
 })

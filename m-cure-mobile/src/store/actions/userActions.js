@@ -1,7 +1,7 @@
 import { LOGIN_USER_SUCCESS } from "./actionTypes";
 import axios from "axios";
 
-const baseUrl = "https://m-cure-origin.herokuapp.com"
+const baseUrl = "https://m-cure-postgres.herokuapp.com"
 
 export const loginUserSuccess = (payload) => {
   return {

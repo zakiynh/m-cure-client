@@ -2,8 +2,11 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import COLORS from "../src/colors";
 import { Title } from "react-native-paper";
 const plus = require("../assets/icons8-plus.png");
+import { useNavigation } from "@react-navigation/native";
 
 export default function Daily({ daily }) {
+    const navigation = useNavigation()
+
     const dateReport = new Date(daily.transactionDate);
     const dayDict = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthDict = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -14,55 +17,62 @@ export default function Daily({ daily }) {
     }
     return (
         <>
-        <View style={{ marginTop: 10, paddingBottom: 4, backgroundColor: COLORS.white }}>
-            <View style={{ backgroundColor: COLORS.white }}>
-                <View style={{ flexDirection: "row", marginTop: 15, borderBottomWidth: 2, borderBottomColor: "#f2f2f2" }}>
-                    <Text style={styles.date}>{dateReport.getDate()}</Text>
-                    <View style={{ marginLeft: 20 }}>
-                        <Title
-                            style={[
-                                styles.day,
-                                {
-                                    marginTop: 10,
-                                },
-                            ]}
-                        >
-                            {dayDict[dateReport.getDay()]}
-                        </Title>
-                        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                            <Text style={[styles.chat, { fontSize: 16 }]}>
-                                {monthDict[dateReport.getMonth()]} {dateReport.getFullYear()}
-                            </Text>
-                        </View>
-                    </View>
-                </View>
+            <TouchableOpacity onPress={() => {
+                navigation.navigate('Edit Transaction', {
+                    id: daily.id
+                })
+            }}>
 
-                {/* Category */}
-                <View style={{ backgroundColor: COLORS.white, marginBottom: 15 }}>
-                    <View style={{ flex: 1, flexDirection: "row", marginTop: 15 }}>
-                        <View>
-                            <Image style={styles.catImg} source={image} />
-                        </View>
-                            <View style={{ flex: 1,marginLeft: 20, flexDirection: "row", justifyContent: "space-between" }}>
-                                <View style={{ justifyContent: "space-between" }}>
-                                    <Title style={[styles.category, { marginTop: 2 }]}>{daily.Category.type}</Title>
-                                    <Text style={[styles.chat, { fontSize: 16 }]}>{daily.Category.name}</Text>  
-                                </View>
-                                <View style={{ flexDirection: "row", justifyContent: "space-between",  alignItems: "center",  }}>
-                                    <Title style={[styles.category, {marginTop: 2, paddingRight: 25, color:daily.Category.name === 'Expense' ? COLORS.textRed : COLORS.textBlue }]}>
-                                        {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(daily.amount)}
-                                    </Title>
+                <View style={{ marginTop: 10, paddingBottom: 4, backgroundColor: COLORS.white }}>
+                    <View style={{ backgroundColor: COLORS.white }}>
+                        <View style={{ flexDirection: "row", marginTop: 15, borderBottomWidth: 2, borderBottomColor: "#f2f2f2" }}>
+                            <Text style={styles.date}>{dateReport.getDate()}</Text>
+                            <View style={{ marginLeft: 20 }}>
+                                <Title
+                                    style={[
+                                        styles.day,
+                                        {
+                                            marginTop: 10,
+                                        },
+                                    ]}
+                                >
+                                    {dayDict[dateReport.getDay()]}
+                                </Title>
+                                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                    <Text style={[styles.chat, { fontSize: 16 }]}>
+                                        {monthDict[dateReport.getMonth()]} {dateReport.getFullYear()}
+                                    </Text>
                                 </View>
                             </View>
-                    </View>
-                </View>
-            </View>
+                        </View>
 
-            {/* FloatingButton */}
-        </View>
-        
+                        {/* Category */}
+                        <View style={{ backgroundColor: COLORS.white, marginBottom: 15 }}>
+                            <View style={{ flex: 1, flexDirection: "row", marginTop: 15 }}>
+                                <View>
+                                    <Image style={styles.catImg} source={image} />
+                                </View>
+                                <View style={{ flex: 1, marginLeft: 20, flexDirection: "row", justifyContent: "space-between" }}>
+                                    <View style={{ justifyContent: "space-between" }}>
+                                        <Title style={[styles.category, { marginTop: 2 }]}>{daily.Category.type}</Title>
+                                        <Text style={[styles.chat, { fontSize: 16 }]}>{daily.Category.name}</Text>
+                                    </View>
+                                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", }}>
+                                        <Title style={[styles.category, { marginTop: 2, paddingRight: 25, color: daily.Category.name === 'Expense' ? COLORS.textRed : COLORS.textBlue }]}>
+                                            {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(daily.amount)}
+                                        </Title>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+
+                    {/* FloatingButton */}
+                </View>
+            </TouchableOpacity>
+
         </>
-        
+
     );
 }
 

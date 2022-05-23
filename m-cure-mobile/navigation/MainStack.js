@@ -15,7 +15,7 @@ import Report from "../screen/Report";
 import ReportDetail from "../screen/ReportDetail";
 import VideoCall from "../screen/VideoCall";
 import COLORS from "../src/colors";
-import SideMenu from "../components/SideMenu";
+import TopNav from "../components/TopNav";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,25 +28,25 @@ export default function MainStack() {
             }}
         >
             <Stack.Navigator>
-                <Stack.Screen
-                    name="navigation" component={SideMenu}
+                {/* <Stack.Screen
+                    name="navigation" component={TopNav}
                     options={{
                         headerShown: false
-                    }} />
+                    }} /> */}
                 {/* <Stack.Screen name="Category" component={Category} /> */}
                 {/* <Stack.Screen name="Chat" component={Chat} /> */}
-                {/* <Stack.Screen name="Login Screen" component={LoginScreen} /> */}
-                {/* <Stack.Screen name="Consultan List" component={ConsultantList} /> */}
+                {/* <Stack.Screen name="Login Screen" component={LoginScreen} options={{ headerShown: false }} /> */}
+                {/* <Stack.Screen name="Consultant List" component={ConsultantList} /> */}
                 {/* <Stack.Screen name="Consultation History" component={ConsultationHistory} /> */}
                 {/* <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} /> */}
                 {/* <Stack.Screen name="Edit Transaction" component={EditTransaction} /> */}
                 {/* <Stack.Screen name="Add Transaction" component={AddTransaction} /> */}
-                {/* <Stack.Screen name="Home Screen" component={HomeScreen} /> */}
+                <Stack.Screen name="Home Screen" component={HomeScreen} />
                 {/* <Stack.Screen name="Payment" component={Payment} /> */}
-                <Stack.Screen name="Profile" component={Profile} />
-                {/* <Stack.Screen name="Report" component={Report} />
-                <Stack.Screen name="ReportDetail" component={ReportDetail} />
-                <Stack.Screen name="VideoCall" component={VideoCall} /> */}
+                {/* <Stack.Screen name="Profile" component={Profile} /> */}
+                {/* <Stack.Screen name="Report" component={Report} /> */}
+                {/* <Stack.Screen name="ReportDetail" component={ReportDetail} /> */}
+                {/* <Stack.Screen name="VideoCall" component={VideoCall} /> */}
             </Stack.Navigator>
         </SafeAreaView >
     );

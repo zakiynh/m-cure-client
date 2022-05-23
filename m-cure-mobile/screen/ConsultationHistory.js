@@ -21,7 +21,7 @@ const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?p
 //     { image, name: "Consultant I", history: "dan", date: "13/02/2022" },
 //     { image, name: "Consultant J", history: "terimakasih", date: "13/04/2022" },
 // ];
-const baseUrl = "https://m-cure-origin.herokuapp.com/"
+const baseUrl = "https://m-cure-postgres.herokuapp.com/"
 
 export default function ConsultationHistory() {
     const tailwind = useTailwind();

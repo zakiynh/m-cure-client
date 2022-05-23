@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Pressable, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import COLORS from '../src/colors';
 import { AntDesign } from '@expo/vector-icons';
@@ -13,8 +13,8 @@ import { getDetailTransactions, getCategories, updateTransaction, deleteTransact
 export default function EditTransaction({ navigation, route }) {
     const dispatch = useDispatch()
     const tailwind = useTailwind()
-    const baseUrl = "https://m-cure-origin.herokuapp.com"
-    // const idTransaction = route.params.id
+    const baseUrl = "https://m-cure-postgres.herokuapp.com"
+    const idTransaction = route.params.id
 
     const { access_token } = useSelector((state) => {
         return state.user
@@ -55,7 +55,7 @@ export default function EditTransaction({ navigation, route }) {
     // Update Transaction
     async function updateTransactionHandler() {
         try {
-            let response = await dispatch(updateTransaction(dataToSend, 11, access_token))
+            let response = await dispatch(updateTransaction(dataToSend, idTransaction, access_token))
 
             if (response === "success") {
                 console.log("berhasil edit transaction")
@@ -73,7 +73,7 @@ export default function EditTransaction({ navigation, route }) {
     // Delete Transaction
     async function deleteTransactionHandler() {
         try {
-            let response = await dispatch(deleteTransaction(11, access_token))
+            let response = await dispatch(deleteTransaction(idTransaction, access_token))
 
             if (response === "success") {
                 console.log("berhasil delete transaction")
@@ -89,7 +89,7 @@ export default function EditTransaction({ navigation, route }) {
 
     // Get Detail Transaction
     useEffect(() => {
-        dispatch(getDetailTransactions(11, access_token))
+        dispatch(getDetailTransactions(idTransaction, access_token))
 
         if (detailTransactions) {
             onChangeAmount(detailTransactions.amount)
@@ -117,7 +117,7 @@ export default function EditTransaction({ navigation, route }) {
     }, [categoryName, allCategories])
 
     return (
-        <View style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }}>
             <View style={tailwind(`bg-white w-full h-full mx-auto mt-3`)}>
                 <TextInput
                     style={tailwind(`w-3/4 h-12 mx-auto mt-7 px-4 border-b-2 border-gray-500 bg-white text-xl text-[${COLORS.textGreen}]`)}
@@ -174,7 +174,7 @@ export default function EditTransaction({ navigation, route }) {
                     </Text>
                 </Pressable>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

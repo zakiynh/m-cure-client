@@ -3,6 +3,11 @@ import React, { useState, useEffect } from "react"
 import { View, Dimensions, StyleSheet, Text, Image, Modal, Pressable } from "react-native"
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTailwind } from "tailwind-rn"
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { DrawerActions } from "@react-navigation/native";
+
 const wallet = require("../assets/icons8-wallet-48.png")
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
@@ -12,12 +17,15 @@ if (Platform.OS === "android") {
   require("intl/locale-data/jsonp/id-ID");
 }
 
-export default function SideMenu() {
+export default function TopNav() {
+  const navigation = useNavigation()
+  const { access_token } = useSelector((state) => {
+    return state.user
+  })
   const tailwind = useTailwind()
-  const baseUrl = "https://m-cure-origin.herokuapp.com"
+  const baseUrl = "https://m-cure-postgres.herokuapp.com"
 
   const [totalMoney, setTotalMoney] = useState("")
-  const [modalVisible, setModalVisible] = useState(false)
 
   useEffect(() => {
     getTotalMoney()
@@ -27,7 +35,7 @@ export default function SideMenu() {
     try {
       let response = await axios.get(`${baseUrl}/users/wallet`, {
         headers: {
-          access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0'
+          access_token
         }
       })
 
@@ -38,9 +46,13 @@ export default function SideMenu() {
     }
   }
   return (
+    // <SafeAreaView>
     <View style={styles.mainContainer} >
       <View style={styles.topNav}>
-        <Pressable onPress={() => setModalVisible(!modalVisible)}>
+        <Pressable onPress={() => {
+          console.log(navigation)
+          navigation.openDrawer()
+        }} >
           <Icon name="menu" size={30} />
         </Pressable>
         <View style={{ flexDirection: "row" }}>
@@ -52,15 +64,17 @@ export default function SideMenu() {
         </View>
         <Icon name="notifications" size={25} />
       </View>
-      <View>
-      </View>
-    </View>
+    </View >
+    // </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
+    // flex: 1,
+    position: "relative",
+    // top: 25,
+    zIndex: 2
   },
   topNav: {
     backgroundColor: "#b4e197",

@@ -7,20 +7,25 @@ import { AntDesign } from "@expo/vector-icons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useTailwind } from "tailwind-rn";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 // const image = { uri: "https://www.awrestaurants.co.id/images/anwbearanimation-1.gif" };
 const image = { uri: "https://i.pinimg.com/originals/1a/c7/6c/1ac76c2bd77d97f913dd44c150f28f0e.png" };
 
-const baseUrl = "https://m-cure-origin.herokuapp.com/"
+const baseUrl = "https://m-cure-postgres.herokuapp.com/"
+
 
 export default function Profile() {
+    const { access_token } = useSelector((state) => {
+        return state.user
+    })
     const [data, setData] = useState([])
     useEffect(() => {
         axios(baseUrl + "users/detail", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyYXRpaHNhbmpheWFAbWFpbC5jb20iLCJpYXQiOjE2NTMyMTMxMzAsImV4cCI6MTY1MzIzNDczMH0.BFLe8Skg-kIYBWvTBaNopxlBehMVfGU5-AIw8wHHWB0"
+                access_token
             }
         })
             .then(res => {

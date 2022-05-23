@@ -2,7 +2,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { DETAIL_TRANSACTION_SUCCESS, GET_CATEGORIES_SUCCESS } from "./actionTypes"
 
-const baseUrl = "https://m-cure-origin.herokuapp.com"
+const baseUrl = "https://m-cure-postgres.herokuapp.com"
 
 export const getDetailSuccess = (payload) => {
   return {
