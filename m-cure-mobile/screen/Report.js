@@ -41,15 +41,12 @@ export default function Report({ navigation }) {
         }
       );
 
-      console.log("LOG at useEffect 35");
       setExpense(response.data.totalExpenses);
       setIncome(response.data.totalIncome);
       setStatus(response.data.moneyStatus);
-      console.log("LOG at useEffect 39");
 
       setDetailExpense(JSON.stringify(response.data.expense));
       setDetailIncome(JSON.stringify(response.data.income));
-      console.log("LOG at useEffect 43");
     }
 
     fetchData();
@@ -82,8 +79,6 @@ export default function Report({ navigation }) {
       }
 
       setTotal(Math.abs(tempTotal));
-
-      console.log("end of FetchData");
     }
   }, [detailExpense, detailIncome]);
 
@@ -98,8 +93,6 @@ export default function Report({ navigation }) {
   }
 
   return (
-
-
     <ScrollView style={styles.container}>
       <TopNav />
       <View style={{ flex: 1, flexDirection: "row", backgroundColor: "white", height: 350 }}>

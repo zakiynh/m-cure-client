@@ -44,7 +44,7 @@ export default function ConsultantList({ navigation }) {
   function videoCallHandler(code, username) {
     // console.log(code)
     // console.log(username)
-    Linking.openURL(`https://vidcall-test.web.app/zJE-s-_cWF8jh26lAABH/${username}`)
+    Linking.openURL(`https://vidcall-test.web.app/${code}/${username}`)
   }
 
   return (
