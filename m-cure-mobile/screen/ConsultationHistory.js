@@ -7,6 +7,7 @@ import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTailwind } from "tailwind-rn";
 import axios from "axios";
+import TopNav from '../components/TopNav';
 
 const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?pid=ImgDet&w=860&h=1081&rs=1" };
 // const data = [
@@ -44,6 +45,8 @@ export default function ConsultationHistory() {
     }, [])
     return (
         <View style={{ flex: 1 }}>
+
+            <TopNav />
             <SafeAreaView style={styles.container}>
                 <FlatList
                     showsVerticalScrollIndicator={false}

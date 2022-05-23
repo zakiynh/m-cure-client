@@ -15,6 +15,12 @@
 			"marginRight": "auto"
 		}
 	},
+	"my-7": {
+		"style": {
+			"marginTop": 28,
+			"marginBottom": 28
+		}
+	},
 	"my-auto": {
 		"style": {
 			"marginTop": "auto",
@@ -63,19 +69,14 @@
 			"display": "flex"
 		}
 	},
-	"h-3/4": {
+	"h-full": {
 		"style": {
-			"height": "75%"
+			"height": "100%"
 		}
 	},
 	"h-12": {
 		"style": {
 			"height": 48
-		}
-	},
-	"h-full": {
-		"style": {
-			"height": "100%"
 		}
 	},
 	"h-2/5": {

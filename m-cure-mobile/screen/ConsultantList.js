@@ -7,6 +7,7 @@ import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import TopNav from '../components/TopNav';
 
 const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?pid=ImgDet&w=860&h=1081&rs=1" };
 // const data = [
@@ -47,43 +48,46 @@ export default function ConsultantList() {
             })
     }, [])
     return (
-        <View style={{ flex: 1 }}>
-            <SafeAreaView style={styles.container}>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{
-                        marginTop: 10,
-                        paddingBottom: 70,
-                    }}
-                    data={data}
-                    renderItem={({ item }) => {
-                        return (
-                            <View style={styles.consultant}>
-                                <View style={{ flexDirection: "row", marginTop: 15 }}>
-                                    <Avatar.Image source={item.image} size={80} />
-                                    <View style={{ marginLeft: 20 }}>
-                                        <Title
-                                            style={[
-                                                styles.consultantName,
-                                                {
-                                                    marginTop: 12,
-                                                },
-                                            ]}
-                                        >
-                                            {item.name}
-                                        </Title>
-                                        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                                            <Entypo style={styles.logo} name="chat" size={30} color={COLORS.mainGreen} />
-                                            <FontAwesome style={[styles.logo, { marginLeft: 40 }]} name="video-camera" size={30} color={COLORS.mainGreen} />
+        <>
+            <View style={{ flex: 1 }}>
+                <TopNav />
+                <SafeAreaView style={styles.container}>
+                    <FlatList
+                        showsVerticalScrollIndicator={false}
+                        contentContainerStyle={{
+                            marginTop: 10,
+                            paddingBottom: 70,
+                        }}
+                        data={data}
+                        renderItem={({ item }) => {
+                            return (
+                                <View style={styles.consultant}>
+                                    <View style={{ flexDirection: "row", marginTop: 15 }}>
+                                        <Avatar.Image source={item.image} size={80} />
+                                        <View style={{ marginLeft: 20 }}>
+                                            <Title
+                                                style={[
+                                                    styles.consultantName,
+                                                    {
+                                                        marginTop: 12,
+                                                    },
+                                                ]}
+                                            >
+                                                {item.name}
+                                            </Title>
+                                            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                                <Entypo style={styles.logo} name="chat" size={30} color={COLORS.mainGreen} />
+                                                <FontAwesome style={[styles.logo, { marginLeft: 40 }]} name="video-camera" size={30} color={COLORS.mainGreen} />
+                                            </View>
                                         </View>
                                     </View>
                                 </View>
-                            </View>
-                        );
-                    }}
-                />
-            </SafeAreaView>
-        </View>
+                            );
+                        }}
+                    />
+                </SafeAreaView>
+            </View>
+        </>
     );
 }
 
