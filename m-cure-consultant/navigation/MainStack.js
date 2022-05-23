@@ -17,8 +17,8 @@ export default function MainStack() {
         >
             <Stack.Navigator>
                 {/* <Stack.Screen name="Chat" component={Chat} /> */}
-                <Stack.Screen name="Consultation History" component={ConsultationHistory} />
-                {/* <Stack.Screen name="Home Screen" component={HomeScreen} /> */}
+                {/* <Stack.Screen name="Consultation History" component={ConsultationHistory} /> */}
+                <Stack.Screen name="Home Screen" component={HomeScreen} />
                 {/* <Stack.Screen name="Login Screen" component={LoginScreen} /> */}
             </Stack.Navigator>
         </SafeAreaView>

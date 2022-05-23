@@ -2,6 +2,8 @@ import { React, useState } from "react";
 import { View, StyleSheet, Dimensions, Image, Text, ScrollView, TextInput, Button, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn"
+import { useDispatch } from "react-redux";
+import { postLoginUser } from "../src/store/actions/userActions";
 import axios from 'axios'
 import COLORS from "../src/colors";
 
@@ -9,11 +11,12 @@ const logo = require("../assets/logo-wo-bg.png")
 const windowWidth = Dimensions.get('window').width
 
 export default function LoginScreen() {
-    const baseUrl = "https://m-cure-postgres.herokuapp.com"
+    // const baseUrl = "https://m-cure-postgres.herokuapp.com"
     const navigation = useNavigation()
     const tailwind = useTailwind()
     const [email, onChangeEmail] = useState("")
     const [password, onChangePassword] = useState("")
+    const dispatch = useDispatch()
 
     const data = {
         email,
@@ -23,21 +26,15 @@ export default function LoginScreen() {
     async function loginHandler() {
 
         try {
-            // console.log(data)
-            let response = await axios.post(`${baseUrl}/users/consultants/login`, data
-            )
+            let response = await dispatch(postLoginUser(data))
 
-            console.log(response.data.access_token)
-            // let test = {
-            //     access_token: response.data.access_token
-            // }
-
-            // access_token = React.createContext(test)
-            // console.log(access_token)
-            // console.log("login pressed")
-            navigation.navigate('Home Screen')
+            console.log(response)
+            if (response === 'success') {
+                navigation.navigate('Home Screen')
+            } else {
+                throw response
+            }
         } catch (err) {
-
             navigation.navigate('Login Screen')
             console.log(err)
         }
