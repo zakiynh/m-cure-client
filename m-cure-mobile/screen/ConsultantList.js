@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, FlatList, Pressable } from "react-native";
+import { ActivityIndicator, View, Text, StyleSheet, SafeAreaView, FlatList, Pressable } from "react-native";
 import { Avatar, Title } from "react-native-paper";
 import COLORS from "../src/colors";
 import { AntDesign } from "@expo/vector-icons";
@@ -20,37 +20,59 @@ export default function ConsultantList({ navigation }) {
   const isFocused = useIsFocused()
   const dispatch = useDispatch()
 
-  const { access_token } = useSelector((state) => {
+  const { access_token, currentHistory, detailUser } = useSelector((state) => {
     return state.user
   })
 
   const [data, setData] = useState([])
 
   useEffect(() => {
-    axios(baseUrl + "users/consultant-list", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        access_token
-      }
-    })
-      .then(res => {
-        const data = res.data
-        setData(data)
+    const interval = setInterval(() => {
+      axios(baseUrl + "users/consultant-list", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          access_token
+        }
       })
-      .catch(err => {
-        console.log(err)
-      })
+        .then(res => {
+          const data = res.data
+          console.log(data, "=========")
+          setData(data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }, 3000);
+    return () => clearInterval(interval);
+
   }, [isFocused])
 
-  // 
-  function videoCallHandler(code, username) {
-    Linking.openURL(`https://vidcall-test.web.app/${code}/${username}`)
+
+  async function videoCallHandler(idConsultant, videoCode) {
+    try {
+
+      if (detailUser.Wallet.ticketVideo === 0) {
+        // swal Please buy ticket
+        navigation.navigate('App', { screen: 'Buy Consultation Ticket' })
+      } else {
+        let response = await dispatch(chatHistory(idConsultant, access_token, "video"))
+
+        if (response === "success") {
+          Linking.openURL(`https://vidcall-test.web.app/${videoCode}/${currentHistory.id}`)
+        }
+      }
+
+
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   async function chatHistoryHandler(id) {
     try {
-      let response = await dispatch(chatHistory(id, access_token))
+      let response = await dispatch(chatHistory(id, access_token, "chat"))
 
       if (response === "success") {
         navigation.navigate("Chat")
@@ -60,6 +82,13 @@ export default function ConsultantList({ navigation }) {
     }
   }
 
+  if (!data.length) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size={"large"} color={"#B4E197"} />
+      </View>
+    )
+  }
   return (
     <>
       <View style={{ flex: 1 }}>
@@ -93,9 +122,13 @@ export default function ConsultantList({ navigation }) {
                           chatHistoryHandler(item.id)
                         }}
                           style={styles.logo} name="chat" size={30} color={COLORS.mainGreen} />
-                        <FontAwesome onPress={() => {
-                          videoCallHandler(item.videoCode, item.username)
-                        }} style={[styles.logo, { marginLeft: 40 }]} name="video-camera" size={30} color={COLORS.mainGreen} />
+
+                        {item.status ? (<FontAwesome
+                          onPress={() => {
+                            videoCallHandler(item.id, item.VideoCode)
+                          }} style={[styles.logo, { marginLeft: 40 }]} name="video-camera" size={30} color={COLORS.mainGreen} />) : <FontAwesome
+                          style={[styles.logo, { marginLeft: 40 }]} name="video-camera" size={30} color={"#cfd7cc"} />}
+
                       </View>
                     </View>
                   </View>
@@ -110,6 +143,10 @@ export default function ConsultantList({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center"
+  },
   container: {
     flex: 1,
   },

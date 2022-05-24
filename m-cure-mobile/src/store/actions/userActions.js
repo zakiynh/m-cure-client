@@ -64,11 +64,11 @@ export const getDetailUser = (access_token) => {
   }
 }
 
-export const chatHistory = (id, access_token) => {
+export const chatHistory = (id, access_token, type) => {
   return async (dispatch) => {
     try {
       let response = await axios.post("https:///m-cure-postgres.herokuapp.com/users/histories", {
-        consultationType: "chat",
+        consultationType: type,
         ConsultantId: id
       }, {
         headers: {

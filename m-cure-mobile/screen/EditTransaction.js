@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, Pressable, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Pressable, ScrollView, Image, Alert } from 'react-native';
 import { useState, useEffect } from 'react';
 import COLORS from '../src/colors';
 import { AntDesign } from '@expo/vector-icons';
@@ -79,7 +79,7 @@ export default function EditTransaction({ navigation, route }) {
 
       if (response === "success") {
         console.log("berhasil delete transaction")
-        // swal berhasil delete transaction
+        Alert.alert("Success", "Succeed delete transaction")
         navigation.navigate('Home Screen')
       } else {
         throw response
