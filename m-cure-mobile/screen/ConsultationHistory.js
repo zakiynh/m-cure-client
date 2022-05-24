@@ -12,114 +12,119 @@ import { useSelector } from 'react-redux';
 
 const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?pid=ImgDet&w=860&h=1081&rs=1" };
 
-const data = [
-    { image, name: "Consultant A", history: "terimakasih", date: "13/06/2022" },
-    { image, name: "Consultant B", history: "oke", date: "13/06/2021" },
-    { image, name: "Consultant C", history: "sama-sama", date: "13/02/2022" },
-    { image, name: "Consultant D", history: "uhuy", date: "13/01/2022" },
-    { image, name: "Consultant E", history: "ini", date: "13/01/2022" },
-    { image, name: "Consultant F", history: "history", date: "13/02/2022" },
-    { image, name: "Consultant G", history: "chat", date: "13/02/2022" },
-    { image, name: "Consultant H", history: "sekian", date: "13/01/2022" },
-    { image, name: "Consultant I", history: "dan", date: "13/02/2022" },
-    { image, name: "Consultant J", history: "terimakasih", date: "13/04/2022" },
-];
-
 const baseUrl = "https://m-cure-postgres.herokuapp.com/"
 
 export default function ConsultationHistory() {
-    const tailwind = useTailwind();
-    // const [data, setData] = useState([])
-    const { access_token } = useSelector((state) => {
-        return state.user
+  const tailwind = useTailwind();
+  const [data, setData] = useState([])
+  const { access_token } = useSelector((state) => {
+    return state.user
+  })
+
+  // async function getHistories() {
+  //   let response = await axios.get(`${baseUrl}/users/histories`, {
+  //     headers: {
+  //       access_token
+  //     }
+  //   })
+
+  //   console.log(response.data)
+  // }
+
+  useEffect(() => {
+    axios(baseUrl + "users/histories", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        access_token
+      }
     })
+      .then(res => {
+        const data = res.data
+        setData(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
 
-    // useEffect(() => {
-    //     axios(baseUrl + "users/histories", {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             access_token
-    //         }
-    //     })
-    //         .then(res => {
-    //             // const data = res.data.data
-    //             setData(data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // }, [])
+  return (
+    <View style={{ flex: 1 }}>
 
-    return (
-        <View style={{ flex: 1 }}>
+      <TopNav />
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            marginTop: 10,
+            paddingBottom: 70,
+          }}
+          data={data.data}
+          renderItem={({ item, index }) => {
+            return (
+              <View style={styles.consultant}>
 
-            <TopNav />
-            <SafeAreaView style={styles.container}>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{
-                        marginTop: 10,
-                        paddingBottom: 70,
-                    }}
-                    data={data}
-                    renderItem={({ item }) => {
-                        return (
-                            <View style={styles.consultant}>
-                                <View style={{ flexDirection: "row", marginBottom: 10 }}>
-                                    <Avatar.Image source={image} size={80} />
-                                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginLeft: 20 }}>
-                                        <View style={{ marginLeft: 10, marginRight: 10 }}>
-                                            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                                                <Title
-                                                    style={[
-                                                        styles.consultantName,
-                                                        {
-                                                            marginTop: 15,
-                                                            marginBottom: 15,
-                                                        },
-                                                    ]}
-                                                >
-                                                    {item.name}
-                                                </Title>
-                                                <View style={{ paddingHorizontal: 140, paddingVertical: 20 }}><Caption style={[styles.chat]}>{item.date}</Caption></View>
+                <View style={{ flex: 1, backgroundColor: "red", width: "100%", marginBottom: 10 }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Avatar.Image source={{ uri: data.details[index].imageProfile }} size={80} />
 
-                                            </View>
-                                            <Caption style={styles.chat}>{item.history}</Caption>
-                                        </View>
-                                    </View>
-                                </View>
-                            </View>
-                        );
-                    }}
-                />
-            </SafeAreaView>
-        </View>
-    );
+                    <View style={{ flexDirection: "row", flex: 1, justifyContent: "space-between", marginLeft: 10 }}>
+
+                      <View style={{ marginLeft: 10, marginRight: 10, backgroundColor: "yellow", width: "100%" }}>
+
+                        <View style={{ backgroundColor: "green", alignItems: "center", flexDirection: "row", justifyContent: 'space-between', flex: 1 }}>
+                          <Title
+                            style={[
+                              styles.consultantName,
+                              {
+                                marginTop: 15,
+                                marginBottom: 15,
+                              },
+                            ]}
+                          >
+                            {data.details[index].name}
+                          </Title>
+                          <View style={{ paddingHorizontal: 5, paddingVertical: 20 }}><Caption style={[styles.chat]}>{item.createdAt.slice(0, 10)}</Caption></View>
+                        </View>
+
+                        {/* <Caption style={styles.chat}>{data}</Caption> */}
+                      </View>
+
+                    </View>
+
+                  </View>
+                </View>
+              </View>
+            );
+          }}
+        />
+      </SafeAreaView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    consultant: {
-        paddingHorizontal: 30,
-        marginBottom: 15,
-        flex: 1,
-        borderBottomWidth: 2,
-        borderBottomColor: COLORS.mainGreen,
-    },
-    consultantName: {
-        fontSize: 24,
-        fontWeight: "bold",
-    },
-    logo: {
-        marginTop: 5,
-        lineHeight: 30,
-    },
-    chat: {
-        fontSize: 16,
-        lineHeight: 16,
-        fontWeight: "500",
-    },
+  container: {
+    flex: 1,
+  },
+  consultant: {
+    paddingHorizontal: 15,
+    marginBottom: 15,
+    flex: 1,
+    borderBottomWidth: 2,
+    borderBottomColor: COLORS.mainGreen,
+  },
+  consultantName: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  logo: {
+    marginTop: 5,
+    lineHeight: 30,
+  },
+  chat: {
+    fontSize: 14,
+    lineHeight: 16,
+    fontWeight: "500",
+  },
 });
