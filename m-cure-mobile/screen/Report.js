@@ -83,9 +83,9 @@ export default function Report({ navigation }) {
   }, [detailExpense, detailIncome]);
 
   function getstyle(val) {
-    if (val === "warning") {
+    if (val === "Warning") {
       return { fontSize: 15, color: "#ff4500" };
-    } else if (val === "danger") {
+    } else if (val === "Danger") {
       return { fontSize: 15, color: "red" };
     } else {
       return { fontSize: 15, color: "#0000cd" };
