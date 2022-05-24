@@ -31,6 +31,8 @@ export default function LoginScreen() {
         console.log("berhasil login")
         // swal berhasil login
         navigation.navigate('App', { screen: 'Home Screen' })
+        onChangeEmail("")
+        onChangePassword("")
       } else {
         throw response
       }

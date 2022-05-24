@@ -24,6 +24,7 @@ import Profile from './screen/Profile';
 import ReportIncome from './screen/ReportIncome';
 import ReportExpense from './screen/ReportExpense';
 import OnBoardingPage from './screen/OnboardingPage';
+import ChatHistory from './screen/ChatHistory';
 
 const Stack = createNativeStackNavigator()
 
@@ -69,6 +70,7 @@ export default function App() {
               <Stack.Screen name="Chat" component={Chat} />
               <Stack.Screen name="VideoCall" component={VideoCall} />
               <Stack.Screen name="Consultation History" component={ConsultationHistory} />
+              <Stack.Screen name='Chat History' component={ChatHistory} />
 
               {/* DRAWER */}
               <Stack.Screen name="App" component={AppStack} options={{ headerShown: false }} />
