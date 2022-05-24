@@ -39,7 +39,7 @@ export const postVideoCode = (data) => {
             let response = await axios.patch(`${baseUrl}/users/consultants`, data, {
                 headers: {
                     access_token:
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImVtYWlsIjoiZGViYnlyaWFAbWFpbC5jb20iLCJpYXQiOjE2NTM0MDI4MzUsImV4cCI6MTY1MzQyNDQzNX0.tAj7m9T3joRIJQTmAAW4zpStBViXuP2-hkk6vR9pIaE",
+                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImVtYWlsIjoiZGViYnlyaWFAbWFpbC5jb20iLCJpYXQiOjE2NTM0MjcyMTUsImV4cCI6MTY1MzQ0ODgxNX0.ci_tuJ_8IXElqMxvEH-cO4XMn4eMA36wQKTR_eyrl3Q",
                 },
             });
             let dataToSave = response.data;
@@ -60,7 +60,7 @@ export const status = (payload) => {
     };
 };
 
-export const postStatus = (id) => {
+export const postStatus = () => {
     return async (dispatch) => {
         try {
             let response = await axios.patch(`${baseUrl}/users/consultants/status`, {}

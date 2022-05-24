@@ -111,9 +111,9 @@ export default function HomeScreen() {
                                     autoCapitalize="none"
                                 />
                                 {/* <Pressable style={[styles.button]} onPress={() => setModalVisible(!modalVisible)}> */}
-                                <Pressable style={[styles.button]} onPress={() => getCode()}>
+                                <TouchableOpacity style={[styles.button]} onPress={() => getCode()}>
                                     {<Text style={styles.textStyle}>Submit Code</Text>}
-                                </Pressable>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </Modal>
