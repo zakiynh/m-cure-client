@@ -1,10 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GestureHandlerRootView, GestureDetector, Gesture } from 'react-native-gesture-handler';
-import MainStack from './navigation/MainStack';
 import AppStack from './navigation/AppStack';
 import { TailwindProvider } from 'tailwind-rn';
 import utilities from './tailwind.json';
@@ -16,19 +14,16 @@ import Register from './screen/Register';
 import HomeScreen from './screen/HomeScreen';
 import AddTransaction from './screen/AddTransaction';
 import EditTransaction from './screen/EditTransaction';
-import Category from './screen/Category';
 import Chat from './screen/Chat';
 import ConsultantList from './screen/ConsultantList';
 import Report from './screen/Report';
 import Payment from './screen/Payment';
 import VideoCall from './screen/VideoCall';
-import ReportDetail from './screen/ReportDetail';
 import ConsultationHistory from './screen/ConsultationHistory';
 import Profile from './screen/Profile';
-import Report from './screen/Report';
 import ReportIncome from './screen/ReportIncome';
 import ReportExpense from './screen/ReportExpense';
-import Chat from './screen/Chat';
+import OnBoardingPage from './screen/OnboardingPage';
 
 const Stack = createNativeStackNavigator()
 
@@ -41,17 +36,18 @@ export default function App() {
           <SafeAreaView
             style={{
               flex: 1,
-              paddingVertical: 8,
+              // paddingVertical: 8,
             }}
           >
             {/* <GestureHandlerRootView> */}
             <Stack.Navigator>
               {/* LANDING PAGE */}
+              <Stack.Screen name='Onboarding Page' component={OnBoardingPage} options={{ headerShown: false }} />
               <Stack.Screen name="Login Screen" component={LoginScreen} options={{ headerShown: false }} />
               <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
 
               {/* HOME SCREEN */}
-              <Stack.Screen name="Home Screen" component={HomeScreen} />
+              <Stack.Screen name="Home Screen" component={HomeScreen} options={{ headerShown: false }} />
 
               {/* USER */}
               <Stack.Screen name="Profile" component={Profile} />
@@ -61,8 +57,9 @@ export default function App() {
               <Stack.Screen name="Edit Transaction" component={EditTransaction} options={{ headerShown: false }} />
 
               {/* REPORT */}
-              <Stack.Screen name="Report" component={Report} />
-              <Stack.Screen name="ReportDetail" component={ReportDetail} />
+              <Stack.Screen name="Report" component={Report} options={{ headerShown: false }} />
+              <Stack.Screen name="Report Income" component={ReportIncome} options={{ headerShown: false }} />
+              <Stack.Screen name="Report Expense" component={ReportExpense} options={{ headerShown: false }} />
 
               {/* CONSULTANT SCREEN */}
               <Stack.Screen name="Consultant List" component={ConsultantList} />

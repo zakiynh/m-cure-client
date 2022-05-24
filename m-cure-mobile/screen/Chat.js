@@ -10,16 +10,23 @@ import {
 import { io } from "socket.io-client";
 import COLORS from "../src/colors";
 import axios from 'axios'
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const socket = io.connect("https://m-cure-postgres.herokuapp.com");
 
 export default function Chat() {
+  const navigation = useNavigation()
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
   const [count, setCount] = useState(true);
   const [chat, setChat] = useState([]);
   const [nameDone, setNameDone] = useState("");
   const [idChat, setIdChat] = useState("");
+
+  const { currentHistory, access_token } = useSelector((state) => {
+    return state.user
+  })
 
   const sendMessage = () => {
     setCount(count ? false : true);
@@ -45,21 +52,30 @@ export default function Chat() {
 
   const onChangeNameFix = async (msg) => {
     try {
-        setNameDone(msg);
-        let response = await axios.post("https://m-cure-mongo.herokuapp.com/consultation", {})
-        setIdChat(response.data.data.insertedId)
-        console.log(response.data.data.insertedId);
+      setNameDone(msg);
+      let response = await axios.post("https://m-cure-mongo.herokuapp.com/consultation", {})
+
+      setIdChat(response.data.data.insertedId)
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   };
 
-   const endChat = async () => {
+  const endChat = async () => {
     try {
-        let response = await axios.put(`https://m-cure-mongo.herokuapp.com/consultation/${idChat}`, chat)
-        console.log(response.data);
+      let response = await axios.put(`https://m-cure-mongo.herokuapp.com/consultation/${idChat}`, chat)
+      console.log(idChat)
+      console.log(response.data, "RESPONSE MONGO END")
+
+      let patchedStatus = await axios.patch(`https://m-cure-postgres.herokuapp.com/users/histories`, {}, {
+        headers: {
+          access_token
+        }
+      })
+      console.log(patchedStatus.data, "PATCHED STATUS")
+      navigation.navigate('App', { screen: 'Consultant List' })
     } catch (error) {
-        console.log(error);
+      console.log(error, "END CHAT");
     }
   };
 
@@ -67,14 +83,14 @@ export default function Chat() {
   if (nameDone === "") {
     return (
       <>
-        <View style={{width: "100%", marginTop: 175}}>
-            <View>
-                <Text  style={{alignSelf: "center"}}>
-                    Input your name :
-                </Text>
-            </View>
+        <View style={{ width: "100%", marginTop: 175 }}>
+          <View>
+            <Text style={{ alignSelf: "center" }}>
+              Input your name :
+            </Text>
+          </View>
 
-          <View style={{alignSelf: "center"}}>
+          <View style={{ alignSelf: "center" }}>
             <TextInput
               style={{
                 backgroundColor: COLORS.mainGreen,
@@ -90,7 +106,7 @@ export default function Chat() {
             />
           </View>
 
-          <View style={{width: "30%", alignSelf: "center"}}>
+          <View style={{ width: "30%", alignSelf: "center" }}>
             <TouchableOpacity onPress={() => onChangeNameFix(name)}>
               <View
                 style={{ backgroundColor: "mintcream", padding: 10, borderRadius: 5 }}
@@ -108,8 +124,8 @@ export default function Chat() {
 
   return (
     <View style={styles.container}>
-      <View  
-          style={{
+      <View
+        style={{
           flex: 1,
           flexDirection: "row",
           position: "absolute",
@@ -117,24 +133,24 @@ export default function Chat() {
           borderBottomColor: "grey",
           backgroundColor: "white"
         }}>
-          <View style={{flex: 9, backgroundColor: "white", marginVertical: 8}}>
-           <Text style={{fontSize: 24, marginTop: 5, color: COLORS.textGreen, marginLeft: 20}}> Consultant </Text>
-          </View>
-          <View style={{flex: 2, marginRight: 20, width: 10, marginVertical: 8}}>
-            <TouchableOpacity onPress={() => endChat()}>
-                <View
-                style={{
-                    backgroundColor: "#F62817",
-                    marginTop: 4,
-                    paddingVertical: 6,
-                    paddingHorizontal: 2,
-                    borderRadius: 10,
-                }}
-                >
-                <Text style={{ color: "white", textAlign: "center" }}>end chat</Text>
-                </View>
-            </TouchableOpacity>
-          </View>
+        <View style={{ flex: 9, backgroundColor: "white", marginVertical: 8 }}>
+          <Text style={{ fontSize: 24, marginTop: 5, color: COLORS.textGreen, marginLeft: 20 }}> Consultant </Text>
+        </View>
+        <View style={{ flex: 2, marginRight: 20, width: 10, marginVertical: 8 }}>
+          <TouchableOpacity onPress={() => endChat()}>
+            <View
+              style={{
+                backgroundColor: "#F62817",
+                marginTop: 4,
+                paddingVertical: 6,
+                paddingHorizontal: 2,
+                borderRadius: 10,
+              }}
+            >
+              <Text style={{ color: "white", textAlign: "center" }}>end chat</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView style={{ margin: 10, width: "100%", marginTop: 65, marginBottom: 50 }}>
@@ -180,7 +196,7 @@ export default function Chat() {
             placeholder="Type your message..."
           ></TextInput>
         </View>
-        <View style={{ marginRight: 20, flex: 3}}>
+        <View style={{ marginRight: 20, flex: 3 }}>
           <TouchableOpacity onPress={() => sendMessage()}>
             <View
               style={{

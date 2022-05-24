@@ -1,26 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ImageBackground, Image, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { getDetailUser } from "../src/store/actions/userActions";
+
+const baseUrl = "https://m-cure-postgres.herokuapp.com"
+
 
 export default function CustomDrawer(props) {
+  const isFocused = useIsFocused()
+  const navigation = useNavigation()
+  const dispatch = useDispatch()
+
+  const { access_token, detailUser } = useSelector((state) => {
+    return state.user
+  })
+
+  useEffect(() => {
+    dispatch(getDetailUser(access_token))
+  }, [isFocused])
+
   return (
     <>
       <View style={{ flex: 1 }}>
         <DrawerContentScrollView {...props}
           contentContainerStyle={{ backgroundColor: "#B4E197" }}>
           <View>
-            <Pressable >
+            <Pressable onPress={() => {
+              navigation.navigate("Profile");
+            }} >
               <View style={styles.headerProfile}>
-                <Image source={{ uri: "https://i.pinimg.com/564x/ab/e0/4f/abe04fd5c93978ed06755493506715ec.jpg" }} style={styles.imageProfile} />
+
+                <Image source={{ uri: detailUser.imageProfile ? detailUser.imageProfile : "https://www.hecmsenior.com/wp-content/uploads/2021/06/Profile-Pic-Icon.png" }} style={styles.imageProfile} />
                 <View>
-                  <Text style={styles.username}>Kim Seonho</Text>
+                  <Text style={styles.username}>{detailUser.username}</Text>
                   <View style={styles.ticketContainer}>
                     <Image source={require("../assets/icons8-ticket-confirmed-48.png")} style={{ width: 25, height: 25, marginHorizontal: 10 }} />
-                    <Text>Chat Ticket: 3</Text>
-                  </View>
-                  <View style={styles.ticketContainer}>
-                    <Image source={require("../assets/icons8-ticket-confirmed-48.png")} style={{ width: 25, height: 25, marginHorizontal: 10 }} />
-                    <Text>Video Ticket: 103</Text>
+                    <Text>Video Ticket: {detailUser.Wallet.ticketVideo}</Text>
                   </View>
                 </View>
               </View>
@@ -33,7 +51,7 @@ export default function CustomDrawer(props) {
           </View>
         </DrawerContentScrollView>
         <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: '#ccc' }}>
-          <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 15 }}>
+          <TouchableOpacity onPress={() => { navigation.navigate("Login Screen") }} style={{ paddingVertical: 15 }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Image source={require("../assets/icons8-logout-100.png")} style={{ width: 40, height: 40 }} />
               <Text style={{ fontSize: 16, letterSpacing: 0.25, marginHorizontal: 4, color: "#f43f3f" }}>Logout</Text>
@@ -47,11 +65,12 @@ export default function CustomDrawer(props) {
 
 const styles = StyleSheet.create({
   imageProfile: {
-    height: 80,
-    width: 80,
+    height: 75,
+    width: 75,
     borderRadius: 40,
     marginBottom: 10,
-    padding: 20
+    padding: 20,
+    resizeMode: "cover"
   },
   username: {
     fontSize: 18,
