@@ -33,16 +33,6 @@
 			"marginTop": 28
 		}
 	},
-	"mr-2": {
-		"style": {
-			"marginRight": 8
-		}
-	},
-	"ml-2": {
-		"style": {
-			"marginLeft": 8
-		}
-	},
 	"flex": {
 		"style": {
 			"display": "flex"
@@ -122,12 +112,6 @@
 		"style": {
 			"fontSize": 20,
 			"lineHeight": 28
-		}
-	},
-	"text-2xl": {
-		"style": {
-			"fontSize": 24,
-			"lineHeight": 32
 		}
 	},
 	"font-bold": {
