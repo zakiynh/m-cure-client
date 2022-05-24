@@ -61,6 +61,10 @@ export default function AddTransaction({ navigation }) {
         console.log("berhasil add transaction")
         // swal berhasil add transaction
         navigation.navigate('Home Screen')
+        onChangeAmount("")
+        onChangeCategory("")
+        onChangeCategoryId("")
+        onChangeDate(new Date())
       } else {
         throw response
       }

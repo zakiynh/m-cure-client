@@ -53,9 +53,10 @@ export default function Chat() {
   const onChangeNameFix = async (msg) => {
     try {
       setNameDone(msg);
-      let response = await axios.post("https://m-cure-mongo.herokuapp.com/consultation", {})
+      // let response = await axios.post("https://m-cure-mongo.herokuapp.com/consultation", {})
 
-      setIdChat(response.data.data.insertedId)
+      // setIdChat(response.data.data.insertedId)
+
     } catch (error) {
       console.log(error);
     }
@@ -63,11 +64,12 @@ export default function Chat() {
 
   const endChat = async () => {
     try {
-      let response = await axios.put(`https://m-cure-mongo.herokuapp.com/consultation/${idChat}`, chat)
+      let response = await axios.put(`https://m-cure-mongo.herokuapp.com/consultation/${currentHistory.MongoConsultationId}`, chat)
+
       console.log(idChat)
       console.log(response.data, "RESPONSE MONGO END")
 
-      let patchedStatus = await axios.patch(`https://m-cure-postgres.herokuapp.com/users/histories`, {}, {
+      let patchedStatus = await axios.patch(`https://m-cure-postgres.herokuapp.com/history-status/${currentHistory.id}`, {}, {
         headers: {
           access_token
         }

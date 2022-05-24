@@ -10,14 +10,14 @@ export default function OnBoardingPage() {
   return (
     <View style={styles.container}>
 
-      <View style={{ flex: 1.5, marginTop: 120, marginBottom: 10 }}>
+      <View style={{ flex: 1.5, marginTop: 120, marginBottom: 15 }}>
         <Image
           source={logo}
-          style={{ width: 120, height: 120 }}
+          style={{ width: 140, height: 140 }}
         />
       </View>
 
-      <View style={{ marginTop: 0, margin: 15, flex: 1 }}>
+      <View style={{ marginTop: 15, margin: 15, flex: 1 }}>
         <Text style={{ fontSize: 22, color: "#556B2F", textAlign: "center" }}>
           Creating better financial lives through technology and experts
         </Text>
