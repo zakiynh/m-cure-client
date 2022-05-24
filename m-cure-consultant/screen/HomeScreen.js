@@ -80,15 +80,15 @@ export default function HomeScreen() {
             });
     }, []);
     return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }} >
             <View style={tailwind("mx-auto my-5")}>
                 <Image source={logo} style={{ width: 200, height: 200 }} />
             </View>
             <View style={[tailwind(`bg-[#b4e197] w-80 rounded-3xl mx-auto`), { justifyContent: "center", alignItems: "center", height: "25%" }]}>
-                <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                <TouchableOpacity style={{ flexDirection: "row", marginBottom: 10 }} onPress={videoCall}>
                     <Entypo name="video-camera" size={40} color="black" />
                     <Text style={{ marginLeft: 20, marginBottom: 20, fontSize: 35, alignItems: "center" }}>Video Call</Text>
-                </View>
+                </TouchableOpacity>
 
                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
                     <Modal
