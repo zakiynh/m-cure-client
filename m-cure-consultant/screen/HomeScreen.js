@@ -12,6 +12,7 @@ import * as Linking from "expo-linking";
 import { useNavigation } from "@react-navigation/native";
 import { postStatus, postVideoCode, postLoginUser } from "../src/store/actions/userActions";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons } from '@expo/vector-icons';
 const addCode = require("../assets/add-code.png");
 
 const image = { uri: "https://th.bing.com/th/id/OIP.uJg0Ku4GimXqktPdSC3YAgHaJT?pid=ImgDet&w=860&h=1081&rs=1" };
@@ -122,6 +123,10 @@ export default function HomeScreen() {
                         <Text style={{ marginLeft: 20, fontSize: 35 }}>Video Code</Text>
                     </Pressable>
                 </View>
+                    <TouchableOpacity style={{ flexDirection: "row", marginBottom: 10 }} onPress={() => navigation.navigate('Chat')}>
+                    <Ionicons name="chatbubble-ellipses-outline" size={40} color="black"  />
+                        <Text style={{ marginLeft: 20, fontSize: 35 }}>Chat</Text>
+                    </TouchableOpacity>
             </View>
 
             <View style={tailwind("my-5 mx-auto")}>
