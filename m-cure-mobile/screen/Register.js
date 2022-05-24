@@ -54,7 +54,7 @@ export default function Register() {
             <Image source={logo} style={{ width: 200, height: 200 }} />
           </View>
           {/* <View style={{ flex: 1 }}> */}
-          <View style={tailwind(`bg-[#b4e197] w-80 rounded-3xl mx-auto pb-8`)}>
+          <View style={[tailwind(`bg-[#b4e197] w-80 rounded-3xl mx-auto pb-8`), styles.container]}>
             {/* <View style={[tailwind("mx-auto items-center"), styles.card]}> */}
             <TextInput
               style={tailwind("w-3/4 h-12 mx-auto mt-7 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
@@ -66,7 +66,7 @@ export default function Register() {
               value={name}
             />
             <TextInput
-              style={tailwind("w-3/4 h-12 mx-auto mt-7 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
+              style={tailwind("w-3/4 h-12 mx-auto mt-5 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
               underlineColorAndroid="transparent"
               placeholder="Username"
               placeholderTextColor={COLORS.textGray}
@@ -75,7 +75,7 @@ export default function Register() {
               value={username}
             />
             <TextInput
-              style={tailwind("w-3/4 h-12 mx-auto mt-7 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
+              style={tailwind("w-3/4 h-12 mx-auto mt-5 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
               underlineColorAndroid="transparent"
               placeholder="Email"
               placeholderTextColor={COLORS.textGray}
@@ -85,7 +85,7 @@ export default function Register() {
               value={email}
             />
             <TextInput
-              style={tailwind("w-3/4 h-12 mx-auto mt-7 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
+              style={tailwind("w-3/4 h-12 mx-auto mt-5 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
               underlineColorAndroid="transparent"
               placeholder="Password"
               placeholderTextColor={COLORS.textGray}
@@ -96,7 +96,7 @@ export default function Register() {
               secureTextEntry={true}
             />
             <TextInput
-              style={tailwind("w-3/4 h-12 mx-auto mt-7 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
+              style={tailwind("w-3/4 h-12 mx-auto mt-5 px-4 rounded-2xl bg-[#f3f3f3] text-xl")}
               underlineColorAndroid="transparent"
               placeholder="Image Url"
               placeholderTextColor={COLORS.textGray}
@@ -105,12 +105,12 @@ export default function Register() {
               value={imageProfile}
               secureTextEntry={true}
             />
-            <Pressable style={tailwind(`bg-[#e9efc0] h-12 w-3/4 mx-auto mt-7 px-4 rounded-2xl`)}
+            <Pressable style={tailwind(`bg-[#e9efc0] h-12 w-3/4 mx-auto mt-5 px-4 rounded-2xl`)}
               onPress={doRegister}
             >
               <Text style={tailwind("text-xl text-center my-auto font-bold")}>Register</Text>
             </Pressable>
-            <Pressable style={tailwind(`bg-[#fe4545] h-12 w-3/4 mx-auto mt-7 px-4 rounded-2xl`)}
+            <Pressable style={tailwind(`bg-[#fe4545] h-12 w-3/4 mx-auto mt-5 px-4 rounded-2xl`)}
               onPress={() => {
                 navigation.navigate('Login Screen')
               }}
@@ -130,6 +130,9 @@ export default function Register() {
 const styles = StyleSheet.create({
   logo: {
     marginTop: "10%"
+  },
+  container: {
+    marginBottom: 30
   },
   card: {
     width: "70%",

@@ -12,7 +12,6 @@ import Payment from "../screen/Payment";
 import HomeScreen from "../screen/HomeScreen";
 import Report from "../screen/Report";
 import EditTransaction from "../screen/EditTransaction";
-import Chat from "../screen/Chat";
 import ReportIncome from "../screen/ReportIncome"
 import ReportExpense from "../screen/ReportExpense"
 

@@ -10,16 +10,23 @@ import {
 import { io } from "socket.io-client";
 import COLORS from "../src/colors";
 import axios from 'axios'
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const socket = io.connect("https://m-cure-postgres.herokuapp.com");
 
 export default function Chat() {
+  const navigation = useNavigation()
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
   const [count, setCount] = useState(true);
   const [chat, setChat] = useState([]);
   const [nameDone, setNameDone] = useState("");
   const [idChat, setIdChat] = useState("");
+
+  const { currentHistory, access_token } = useSelector((state) => {
+    return state.user
+  })
 
   const sendMessage = () => {
     setCount(count ? false : true);
@@ -47,8 +54,8 @@ export default function Chat() {
     try {
       setNameDone(msg);
       let response = await axios.post("https://m-cure-mongo.herokuapp.com/consultation", {})
+
       setIdChat(response.data.data.insertedId)
-      console.log(response.data.data.insertedId);
     } catch (error) {
       console.log(error);
     }
@@ -57,9 +64,18 @@ export default function Chat() {
   const endChat = async () => {
     try {
       let response = await axios.put(`https://m-cure-mongo.herokuapp.com/consultation/${idChat}`, chat)
-      console.log(response.data);
+      console.log(idChat)
+      console.log(response.data, "RESPONSE MONGO END")
+
+      let patchedStatus = await axios.patch(`https://m-cure-postgres.herokuapp.com/users/histories`, {}, {
+        headers: {
+          access_token
+        }
+      })
+      console.log(patchedStatus.data, "PATCHED STATUS")
+      navigation.navigate('App', { screen: 'Consultant List' })
     } catch (error) {
-      console.log(error);
+      console.log(error, "END CHAT");
     }
   };
 

@@ -41,7 +41,8 @@
     "redux-thunk": "^2.4.1",
     "socket.io-client": "^4.5.1",
     "tailwind-rn": "^4.2.0",
-    "victory-native": "^36.4.0"
+    "victory-native": "^36.4.0",
+    "react-native-webview": "11.18.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
