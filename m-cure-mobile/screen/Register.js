@@ -103,7 +103,6 @@ export default function Register() {
               autoCapitalize="none"
               onChangeText={onChangeImageProfile}
               value={imageProfile}
-              secureTextEntry={true}
             />
             <Pressable style={tailwind(`bg-[#e9efc0] h-12 w-3/4 mx-auto mt-5 px-4 rounded-2xl`)}
               onPress={doRegister}
