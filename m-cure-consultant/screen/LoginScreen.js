@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { View, StyleSheet, Dimensions, Image, Text, ScrollView, TextInput, Button, Pressable } from "react-native";
+import { View, StyleSheet, Dimensions, Image, Text, ScrollView, TextInput, Button, Pressable, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTailwind } from "tailwind-rn"
 import { useDispatch } from "react-redux";
@@ -30,11 +30,13 @@ export default function LoginScreen() {
 
             console.log(response)
             if (response === 'success') {
+                Alert.alert("Success", "Login Success")
                 navigation.navigate('Home Screen')
             } else {
                 throw response
             }
         } catch (err) {
+            // Alert.alert("Error", err)
             navigation.navigate('Login Screen')
             console.log(err)
         }
