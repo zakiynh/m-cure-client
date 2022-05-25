@@ -75,8 +75,10 @@ export const chatHistory = (id, access_token, type) => {
           access_token
         }
       })
+
       dispatch(saveHistory(response.data))
       return "success"
+
     } catch (error) {
       console.log(error, "EROORRR")
     }

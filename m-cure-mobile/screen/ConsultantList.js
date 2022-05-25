@@ -53,18 +53,17 @@ export default function ConsultantList({ navigation }) {
     try {
 
       if (detailUser.Wallet.ticketVideo === 0) {
-        // swal Please buy ticket
         Alert.alert("Please buy ticket")
         navigation.navigate('App', { screen: 'Buy Consultation Ticket' })
       } else {
         let response = await dispatch(chatHistory(idConsultant, access_token, "video"))
 
         if (response === "success") {
-          Linking.openURL(`https://vidcall-test.web.app/${videoCode}/${currentHistory.id}`)
+          if (currentHistory.id) {
+            Linking.openURL(`https://vidcall-test.web.app/${videoCode}/${currentHistory.id}`)
+          }
         }
       }
-
-
     } catch (error) {
       console.log(error)
     }
