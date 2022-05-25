@@ -33,13 +33,12 @@ export const videoCode = (payload) => {
     };
 };
 
-export const postVideoCode = (data) => {
+export const postVideoCode = (data, access_token) => {
     return async (dispatch) => {
         try {
             let response = await axios.patch(`${baseUrl}/users/consultants`, data, {
                 headers: {
-                    access_token:
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImVtYWlsIjoiZGViYnlyaWFAbWFpbC5jb20iLCJpYXQiOjE2NTM0MjcyMTUsImV4cCI6MTY1MzQ0ODgxNX0.ci_tuJ_8IXElqMxvEH-cO4XMn4eMA36wQKTR_eyrl3Q",
+                    access_token: access_token,
                 },
             });
             let dataToSave = response.data;
@@ -60,10 +59,17 @@ export const status = (payload) => {
     };
 };
 
-export const postStatus = () => {
+export const postStatus = (access_token) => {
     return async (dispatch) => {
         try {
-            let response = await axios.patch(`${baseUrl}/users/consultants/status`, {}
+            let response = await axios.patch(
+                `${baseUrl}/users/consultants/status`,
+                {},
+                {
+                    headers: {
+                        access_token: access_token,
+                    },
+                }
             );
             let dataToSave = response.data;
 
@@ -71,7 +77,8 @@ export const postStatus = () => {
 
             return "success";
         } catch (error) {
+            console.log(error)
             return error;
         }
     };
-}
+};

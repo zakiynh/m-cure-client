@@ -51,10 +51,10 @@ export default function HomeScreen() {
 
     async function getCode() {
         try {
-            const response = await dispatch(postVideoCode(code));
+            const response = await dispatch(postVideoCode(code, access_token));
             if (response === "success") {
                 Alert.alert("Success", "Your video code has been sent to user");
-                    dispatch(postStatus());
+                    dispatch(postStatus(access_token));
                 setModalVisible(false);
             } else {
                 throw response;
@@ -63,22 +63,6 @@ export default function HomeScreen() {
             console.log(err);
         }
     }
-    useEffect(() => {
-        axios(baseUrl + "/histories/open", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                access_token: access_token,
-            },
-        })
-            .then((res) => {
-                const data = res.data.data;
-                setData(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }} >
             <View style={tailwind("mx-auto my-5")}>
