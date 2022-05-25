@@ -16,28 +16,12 @@ const baseUrl = "https://m-cure-postgres.herokuapp.com/"
 
 
 export default function Profile() {
-    const { access_token } = useSelector((state) => {
+    const { access_token, detailUser } = useSelector((state) => {
         return state.user
     })
-    const [data, setData] = useState([])
-    useEffect(() => {
-        axios(baseUrl + "users/detail", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                access_token
-            }
-        })
-            .then(res => {
-                const data = res.data
-                // console.log("data: ", data);
-                setData(data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    })
+
     const tailwind = useTailwind();
+
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.white }}>
             <View style={[{ alignItems: "center" }]}>
@@ -50,7 +34,7 @@ export default function Profile() {
                         alignItems: "center",
                     }}
                 >
-                    <ImageBackground source={image} style={{ height: 100, width: 100 }} imageStyle={{ borderRadius: 15 }}>
+                    <ImageBackground source={{ uri: detailUser.imageProfile }} style={{ height: 100, width: 100 }} imageStyle={{ borderRadius: 100 }}>
                         <View
                             style={{
                                 flex: 1,
@@ -60,7 +44,7 @@ export default function Profile() {
                         ></View>
                     </ImageBackground>
                 </View>
-                <Text style={{ marginTop: 10, fontSize: 18, fontWeight: "bold" }}>{data.username}</Text>
+                <Text style={{ marginTop: 10, fontSize: 18, fontWeight: "bold" }}>{detailUser.username}</Text>
             </View>
 
             <View style={styles.action}>
@@ -68,14 +52,14 @@ export default function Profile() {
                     {" "}
                     Name
                 </FontAwesome>
-                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {data.name} </Text>
+                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {detailUser.name} </Text>
             </View>
             <View style={styles.action}>
                 <FontAwesome name="envelope-o" color={COLORS.mainGreen} size={22}>
                     {" "}
                     Email
                 </FontAwesome>
-                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {data.email} </Text>
+                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {detailUser.email} </Text>
             </View>
             <View style={styles.action}>
                 <FontAwesome name="lock" color={COLORS.mainGreen} size={22}>
@@ -89,7 +73,7 @@ export default function Profile() {
                     {" "}
                     User ID
                 </FontAwesome>
-                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {data.id} </Text>
+                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {detailUser.id} </Text>
             </View>
         </View>
     );

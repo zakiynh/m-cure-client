@@ -6,6 +6,8 @@ import { useTailwind } from "tailwind-rn"
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation, DrawerActions } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useIsFocused } from "@react-navigation/native";
+
 
 const wallet = require("../assets/icons8-wallet-48.png")
 const windowWidth = Dimensions.get('window').width
@@ -17,6 +19,7 @@ if (Platform.OS === "android") {
 }
 
 export default function TopNav() {
+  const isFocused = useIsFocused()
   const dispatch = useDispatch()
   const navigation = useNavigation()
   const { access_token } = useSelector((state) => {
@@ -31,7 +34,7 @@ export default function TopNav() {
     // if (isMounted) {
     getTotalMoney()
     // }
-  }, [])
+  }, [isFocused])
 
   async function getTotalMoney() {
     const baseUrl = "https://m-cure-postgres.herokuapp.com"

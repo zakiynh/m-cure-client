@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ActivityIndicator, View, Text, StyleSheet, SafeAreaView, FlatList, Pressable } from "react-native";
+import { ActivityIndicator, View, Text, StyleSheet, SafeAreaView, FlatList, Pressable, Alert } from "react-native";
 import { Avatar, Title } from "react-native-paper";
 import COLORS from "../src/colors";
 import { AntDesign } from "@expo/vector-icons";
@@ -43,7 +43,7 @@ export default function ConsultantList({ navigation }) {
         .catch(err => {
           console.log(err)
         })
-    }, 3000);
+    }, 10000);
     return () => clearInterval(interval);
 
   }, [isFocused])
@@ -54,6 +54,7 @@ export default function ConsultantList({ navigation }) {
 
       if (detailUser.Wallet.ticketVideo === 0) {
         // swal Please buy ticket
+        Alert.alert("Please buy ticket")
         navigation.navigate('App', { screen: 'Buy Consultation Ticket' })
       } else {
         let response = await dispatch(chatHistory(idConsultant, access_token, "video"))

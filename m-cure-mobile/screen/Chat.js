@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Alert,
 } from "react-native";
 import { io } from "socket.io-client";
 import COLORS from "../src/colors";
@@ -66,18 +67,15 @@ export default function Chat() {
     try {
       let response = await axios.put(`https://m-cure-mongo.herokuapp.com/consultation/${currentHistory.MongoConsultationId}`, chat)
 
-      console.log(idChat)
-      console.log(response.data, "RESPONSE MONGO END")
-
       let patchedStatus = await axios.patch(`https://m-cure-postgres.herokuapp.com/history-status/${currentHistory.id}`, {}, {
         headers: {
           access_token
         }
       })
-      console.log(patchedStatus.data, "PATCHED STATUS")
+      Alert.alert("Success", "You ended this chat. Your chat is successfully saved")
       navigation.navigate('App', { screen: 'Consultant List' })
     } catch (error) {
-      console.log(error, "END CHAT");
+      Alert.alert("Error", "Try again")
     }
   };
 

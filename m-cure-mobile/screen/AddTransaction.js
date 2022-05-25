@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, Pressable, Button, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Pressable, Button, ScrollView, Image, Alert } from 'react-native';
 import COLORS from '../src/colors';
 import { AntDesign } from '@expo/vector-icons';
 import { useTailwind } from "tailwind-rn"
@@ -59,7 +59,7 @@ export default function AddTransaction({ navigation }) {
 
       if (response === "success") {
         console.log("berhasil add transaction")
-        // swal berhasil add transaction
+        Alert.alert("Success", "Succeed add transaction")
         navigation.navigate('Home Screen')
         onChangeAmount("")
         onChangeCategory("")
@@ -69,8 +69,7 @@ export default function AddTransaction({ navigation }) {
         throw response
       }
     } catch (err) {
-      // swal error add transaction
-      console.log(err)
+      Alert.alert("Error", err)
     }
   }
 

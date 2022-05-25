@@ -2,6 +2,7 @@ import { DETAIL_USER_SUCCESS, LOGIN_USER_SUCCESS, SAVE_HISTORY_SUCCESS } from ".
 
 const initialState = {
   detailUser: {
+    id: "",
     email: "",
     username: "",
     name: "",

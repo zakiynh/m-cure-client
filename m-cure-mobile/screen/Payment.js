@@ -4,16 +4,16 @@ import { WebView } from 'react-native-webview';
 import { useEffect } from 'react';
 import { Text, View } from "react-native";
 import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-const baseUrl = "https://m-cure-postgres.herokuapp.com"
 import { getDetailUser } from '../src/store/actions/userActions';
+const baseUrl = "https://m-cure-postgres.herokuapp.com"
 
 export default function Payment() {
   const dispatch = useDispatch()
   const navigation = useNavigation()
   const [url, setUrl] = React.useState("")
-  const { access_token } = useSelector((state) => {
+  const { access_token, detailUser } = useSelector((state) => {
     return state.user
   })
 
@@ -46,15 +46,35 @@ export default function Payment() {
 
   }
 
+  useFocusEffect(
+    React.useCallback(() => {
+      // Do something when the screen is focused
+      async function pay() {
+        let response = await axios.post("https://m-cure-postgres.herokuapp.com/users/payment", {
+          email: detailUser.email
+        }, {});
+        // console.log(response.data, "====")
+        setUrl(response.data.redirect_url)
+      }
+      pay()
 
-  useEffect(() => {
-    async function pay() {
-      let response = await axios.post("https://m-cure-postgres.herokuapp.com/users/payment", {}, {});
-      // console.log(response.data, "====")
-      setUrl(response.data.redirect_url)
-    }
-    pay()
-  }, [])
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+      };
+    }, [])
+  );
+
+  // useEffect(() => {
+  //   async function pay() {
+  //     let response = await axios.post("https://m-cure-postgres.herokuapp.com/users/payment", {
+  //       email: detailUser.email
+  //     }, {});
+  //     // console.log(response.data, "====")
+  //     setUrl(response.data.redirect_url)
+  //   }
+  //   pay()
+  // }, [])
 
   if (url === "") {
     return (

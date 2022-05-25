@@ -61,13 +61,13 @@ export default function EditTransaction({ navigation, route }) {
 
       if (response === "success") {
         console.log("berhasil edit transaction")
-        // swal berhasil edit transaction
+        Alert.alert("Success", "Succeed edit transaction")
         navigation.navigate('Home Screen')
       } else {
         throw response
       }
     } catch (error) {
-      // swal error edit transaction
+      Alert.alert("Error", error)
       console.log(error)
     }
   }
@@ -85,7 +85,7 @@ export default function EditTransaction({ navigation, route }) {
         throw response
       }
     } catch (error) {
-
+      Alert.alert("Error", error)
     }
   }
 

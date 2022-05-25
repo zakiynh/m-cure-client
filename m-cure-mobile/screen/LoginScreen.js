@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { View, StyleSheet, Dimensions, Image, Text, ScrollView, TextInput, Button, Pressable } from "react-native";
+import { View, StyleSheet, Dimensions, Image, Text, ScrollView, TextInput, Button, Pressable, Alert } from "react-native";
 import { useTailwind } from "tailwind-rn"
 import { useDispatch } from "react-redux";
 import axios from 'axios'
@@ -28,8 +28,7 @@ export default function LoginScreen() {
       let response = await dispatch(postLoginUser(data))
 
       if (response === 'success') {
-        console.log("berhasil login")
-        // swal berhasil login
+        Alert.alert("Success", "Start your money journey")
         navigation.navigate('App', { screen: 'Home Screen' })
         onChangeEmail("")
         onChangePassword("")
@@ -37,8 +36,7 @@ export default function LoginScreen() {
         throw response
       }
     } catch (err) {
-      console.log(err)
-      // swal Invalid email or password
+      Alert.alert("Error", err)
       navigation.navigate('Login Screen')
     }
   }
