@@ -52,7 +52,6 @@ export default function HomeScreen() {
     async function getCode() {
         try {
             const response = await dispatch(postVideoCode(code));
-            console.log(response);
             if (response === "success") {
                 Alert.alert("Success", "Your video code has been sent to user");
                     dispatch(postStatus());
@@ -112,9 +111,9 @@ export default function HomeScreen() {
                                     autoCapitalize="none"
                                 />
                                 {/* <Pressable style={[styles.button]} onPress={() => setModalVisible(!modalVisible)}> */}
-                                <Pressable style={[styles.button]} onPress={() => getCode(id)}>
+                                <TouchableOpacity style={[styles.button]} onPress={() => getCode()}>
                                     {<Text style={styles.textStyle}>Submit Code</Text>}
-                                </Pressable>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </Modal>

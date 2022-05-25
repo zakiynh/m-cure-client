@@ -125,7 +125,7 @@ export default function ConsultantList({ navigation }) {
 
                         {item.status ? (<FontAwesome
                           onPress={() => {
-                            videoCallHandler(item.id, item.VideoCode)
+                            videoCallHandler(item.id, item.videoCode)
                           }} style={[styles.logo, { marginLeft: 40 }]} name="video-camera" size={30} color={COLORS.mainGreen} />) : <FontAwesome
                           style={[styles.logo, { marginLeft: 40 }]} name="video-camera" size={30} color={"#cfd7cc"} />}
 
