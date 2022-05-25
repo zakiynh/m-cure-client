@@ -27,16 +27,6 @@ export default function ConsultationHistory() {
     return state.user
   })
 
-  // async function getHistories() {
-  //   let response = await axios.get(`${baseUrl}/users/histories`, {
-  //     headers: {
-  //       access_token
-  //     }
-  //   })
-
-  //   console.log(response.data)
-  // }
-
   useEffect(() => {
     axios(baseUrl + "users/histories", {
       method: "GET",

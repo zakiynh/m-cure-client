@@ -60,7 +60,7 @@ export default function AddTransaction({ navigation }) {
       if (response === "success") {
         console.log("berhasil add transaction")
         Alert.alert("Success", "Succeed add transaction")
-        navigation.navigate('Home Screen')
+        navigation.navigate('App', { screen: 'Home Screen' })
         onChangeAmount("")
         onChangeCategory("")
         onChangeCategoryId("")

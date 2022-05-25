@@ -255,18 +255,3 @@ const styles = StyleSheet.create({
     maxWidth: 350
   },
 });
-
-// import { View, Text, StyleSheet } from 'react-native';
-// import { AntDesign } from '@expo/vector-icons';
-
-// export default function Chat() {
-//     return (
-//     <View style={{ flex: 1 }}>
-//         <Text>Chat</Text>
-//     </View>
-//     )
-// }
-
-// const styles = StyleSheet.create({
-
-// })

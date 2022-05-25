@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { getDetailUser } from "../src/store/actions/userActions";
+import COLORS from "../src/colors";
 
 const baseUrl = "https://m-cure-postgres.herokuapp.com"
 
@@ -32,13 +33,12 @@ export default function CustomDrawer(props) {
               navigation.navigate("Profile");
             }} >
               <View style={styles.headerProfile}>
-
                 <Image source={{ uri: detailUser.imageProfile ? detailUser.imageProfile : "https://www.hecmsenior.com/wp-content/uploads/2021/06/Profile-Pic-Icon.png" }} style={styles.imageProfile} />
                 <View>
                   <Text style={styles.username}>{detailUser.username}</Text>
-                  <View style={styles.ticketContainer}>
-                    <Image source={require("../assets/icons8-ticket-confirmed-48.png")} style={{ width: 25, height: 25, marginHorizontal: 10 }} />
-                    <Text>Video Ticket: {detailUser.Wallet.ticketVideo}</Text>
+                  <View style={styles.emailContainer}>
+                    <Image source={require("../assets/icons8-envelope-100.png")} style={{ width: 30, height: 30, marginHorizontal: 5 }} />
+                    <Text style={{ paddingTop: 5, color: "gray" }}>{detailUser.email}</Text>
                   </View>
                 </View>
               </View>
@@ -74,17 +74,16 @@ const styles = StyleSheet.create({
   },
   username: {
     fontSize: 18,
-    color: "#6a6a6a",
     marginVertical: 3,
     marginHorizontal: 10
   },
   headerProfile: {
     flexDirection: "row",
-    padding: 20,
+    padding: 20
   },
-  ticketContainer: {
+  emailContainer: {
     flexDirection: "row",
-    // alignContent: "center",
-    // justifyContent: "center"
+    alignContent: "center",
+    justifyContent: "center"
   }
 })

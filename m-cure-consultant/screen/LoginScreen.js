@@ -31,7 +31,7 @@ export default function LoginScreen() {
             console.log(response)
             if (response === 'success') {
                 Alert.alert("Success", "Login Success")
-                navigation.navigate('Home Screen')
+                navigation.navigate('App')
             } else {
                 throw response
             }

@@ -22,24 +22,6 @@ export default function ChatHistory({ route }) {
 
   async function getMessage() {
     try {
-      // const messages = [
-      //   {
-      //     "name": "adlan",
-      //     "message": "jksdjkifjsdiofjsdiofjiosdjfoijsdf"
-      //   },
-      //   {
-      //     "name": "malik",
-      //     "message": "jksdjkifjsdiofjsdiofjiosdjfoijsdf"
-      //   },
-      //   {
-      //     "name": "syariaty",
-      //     "message": "jksdjkifjsdiofjsdiofjiosdjfoijsdf"
-      //   },
-      //   {
-      //     "name": "syariaty SANJAYAAA",
-      //     "message": "jksdjkifjsSKD JOSDNF IOJSDIF SDIF NSOIDF ISDF SDF diofjsdiofjiosdjfoijsdf"
-      //   }
-      // ]
 
       let response = await axios.get(`https://m-cure-mongo.herokuapp.com/consultation/${MongoConsultationId}`)
 

@@ -27,7 +27,7 @@ export default function Daily({ daily }) {
                     <View style={{ backgroundColor: COLORS.white }}>
                         <View style={{ flexDirection: "row", marginTop: 15, borderBottomWidth: 2, borderBottomColor: "#f2f2f2" }}>
                             <Text style={styles.date}>{dateReport.getDate()}</Text>
-                            <View style={{ marginLeft: 20 }}>
+                            <View style={{ marginLeft: 10 }}>
                                 <Title
                                     style={[
                                         styles.day,

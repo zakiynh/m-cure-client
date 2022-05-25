@@ -141,7 +141,6 @@ export default function HomeScreen() {
           }}
         >
           <View>
-
             <Image
               style={styles.plus} source={plus} />
           </View>

@@ -32,6 +32,7 @@ export default function Profile() {
                         borderRadius: 15,
                         justifyContent: "center",
                         alignItems: "center",
+                        marginTop: 20
                     }}
                 >
                     <ImageBackground source={{ uri: detailUser.imageProfile }} style={{ height: 100, width: 100 }} imageStyle={{ borderRadius: 100 }}>
@@ -69,11 +70,11 @@ export default function Profile() {
                 <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> ***** </Text>
             </View>
             <View style={styles.action}>
-                <FontAwesome name="user-o" color={COLORS.mainGreen} size={22}>
+                <FontAwesome name="ticket" color={COLORS.mainGreen} size={22}>
                     {" "}
-                    User ID
+                    Ticket Video
                 </FontAwesome>
-                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {detailUser.id} </Text>
+                <Text style={[tailwind("mt-2"), { fontWeight: "bold", fontSize: 20 }]}> {detailUser.Wallet.ticketVideo} </Text>
             </View>
         </View>
     );
