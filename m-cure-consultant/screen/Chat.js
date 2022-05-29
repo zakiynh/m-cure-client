@@ -136,7 +136,7 @@ export default function Chat() {
           backgroundColor: "white"
         }}>
         <View style={{ flex: 9, backgroundColor: "white", marginVertical: 8 }}>
-          <Text style={{ fontSize: 24, marginTop: 5, color: COLORS.textGreen, marginLeft: 20 }}> Consultant </Text>
+          <Text style={{ fontSize: 24, marginTop: 5, color: COLORS.textGreen, marginLeft: 20 }}>{nameDone}</Text>
         </View>
         <View style={{ flex: 2, marginRight: 20, width: 10, marginVertical: 8 }}>
           <TouchableOpacity onPress={() => endChat()}>
