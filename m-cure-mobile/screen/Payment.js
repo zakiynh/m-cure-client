@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Text, View } from "react-native";
 import axios from 'axios';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -16,6 +16,7 @@ export default function Payment() {
   const { access_token, detailUser } = useSelector((state) => {
     return state.user
   })
+  const [flag, setFlag] = useState(false)
 
   async function addTicket() {
     try {
@@ -36,24 +37,21 @@ export default function Payment() {
 
     if (!url) return;
 
-    if (url.includes('status_code=200')) {
+    if (url.includes('status_code=200') && !flag) {
       addTicket()
       dispatch(getDetailUser(access_token))
-      // .then(() => {
+      setFlag(true)
       navigation.navigate('App', { screen: 'Home Screen' })
-      // })
     }
-
   }
 
   useFocusEffect(
     React.useCallback(() => {
-      // Do something when the screen is focused
+      setFlag(false)
       async function pay() {
         let response = await axios.post("https://m-cure-postgres.herokuapp.com/users/payment", {
           email: detailUser.email
         }, {});
-        // console.log(response.data, "====")
         setUrl(response.data.redirect_url)
       }
       pay()
@@ -64,17 +62,6 @@ export default function Payment() {
       };
     }, [])
   );
-
-  // useEffect(() => {
-  //   async function pay() {
-  //     let response = await axios.post("https://m-cure-postgres.herokuapp.com/users/payment", {
-  //       email: detailUser.email
-  //     }, {});
-  //     // console.log(response.data, "====")
-  //     setUrl(response.data.redirect_url)
-  //   }
-  //   pay()
-  // }, [])
 
   if (url === "") {
     return (

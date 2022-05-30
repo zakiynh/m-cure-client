@@ -13,13 +13,12 @@ export default function MainStack() {
         <SafeAreaView
             style={{
                 flex: 1,
-                paddingVertical: 8,
             }}
         >
             <Stack.Navigator>
                 {/* <Stack.Screen name="Consultation History" component={ConsultationHistory} /> */}
                 <Stack.Screen name="Login Screen" component={LoginScreen} />
-                <Stack.Screen name="Home Screen" component={HomeScreen} />
+                <Stack.Screen name="Home Screen" component={HomeScreen} options={{headerShown: false}}/>
                 <Stack.Screen name="Chat" component={Chat} />
             </Stack.Navigator>
         </SafeAreaView>

@@ -62,7 +62,7 @@ export default function EditTransaction({ navigation, route }) {
       if (response === "success") {
         console.log("berhasil edit transaction")
         Alert.alert("Success", "Succeed edit transaction")
-        navigation.navigate('App')
+        navigation.navigate('App', {screen: "Home Screen"})
       } else {
         throw response
       }
@@ -80,7 +80,7 @@ export default function EditTransaction({ navigation, route }) {
       if (response === "success") {
         console.log("berhasil delete transaction")
         Alert.alert("Success", "Succeed delete transaction")
-        navigation.navigate('App')
+        navigation.navigate('App', {screen: "Home Screen"})
       } else {
         throw response
       }
